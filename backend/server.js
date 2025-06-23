@@ -12,12 +12,14 @@ const profile = require("./routes/profile");
 const appointment = require("./routes/appointment");
 const appointment_admin = require("./routes/appointment_admin");
 const presc = require("./routes/Prescription/prescription");
+const writepresc = require("./routes/Prescription/write_prescription");
 app.use("/newreg", jwtreg);
 app.use("/a", validtest);
 app.use("/a", profile);
 app.use("/a", appointment);
 app.use("/a", appointment_admin);
 app.use("/a", presc);
+app.use("/a", writepresc);
 
 app.get("/testing", async (req, res) => {
   res.send("hello how hi are u");

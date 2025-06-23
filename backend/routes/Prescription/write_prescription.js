@@ -11,7 +11,12 @@ router.post(
     //const client = await pool.connect();
     try {
       const appointmentId = req.params.id;
-      const doctorUserId = req.user;
+      const doctorId = req.user;
+      const dctr = await pool.query(`select * from doctor where user_id = $1`, [
+        doctorId,
+      ]);
+      const doctorUserId = dctr.rows[0].doctor_id;
+      console.log(doctorUserId);
 
       const appointment = await pool.query(
         `SELECT * FROM appointment WHERE appointment_id = $1`,
@@ -22,6 +27,9 @@ router.post(
 
       const { symptoms, comments, date, medicines, tests, surgeries } =
         req.body;
+      console.log(medicines);
+      console.log(tests);
+      console.log(surgeries);
 
       // Insert into prescription
       const prescriptionResult = await pool.query(
@@ -32,12 +40,12 @@ router.post(
       );
 
       const consultationId = prescriptionResult.rows[0].consultation_id;
-
+      console.log(consultationId);
       // Insert prescribed medicines
       if (Array.isArray(medicines)) {
         for (let med of medicines) {
           await pool.query(
-            `INSERT INTO prescribed_medicine (consultation_id, medicine_id, dosage, duration)
+            `INSERT INTO prescribed_meds (consultation_id, medicine_id, dosage, duration)
            VALUES ($1, $2, $3, $4)`,
             [consultationId, med.medicine_id, med.dosage, med.duration]
           );
@@ -66,14 +74,20 @@ router.post(
         }
       }
 
+      await pool.query(
+        `UPDATE appointment SET status = 'C' WHERE appointment_id = $1`,
+        [appointmentId]
+      );
+
       //await client.query("COMMIT");
       res.status(201).json({
         message: "Prescription and associated records added successfully",
       });
     } catch (err) {
       //await client.query("ROLLBACK");
+      console.log(err);
       console.error(err);
-      res.status(500).json({ error: "Server error" });
+      res.status(500).json({ error: "Server error" + err });
     } finally {
       //client.release();
     }
