@@ -78,6 +78,7 @@ router.post(
         `UPDATE appointment SET status = 'C' WHERE appointment_id = $1`,
         [appointmentId]
       );
+      console.log(hello)
 
       //await client.query("COMMIT");
       res.status(201).json({
