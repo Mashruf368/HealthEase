@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDoctors = async () => {
       const token = localStorage.getItem("token");
-      console.log(token);
       if (!token) {
         setError("No token found. Please log in.");
         return;
@@ -38,6 +39,10 @@ const Doctors = () => {
     fetchDoctors();
   }, []);
 
+  const handleAppointment = (id) => {
+    navigate(`/doctor/${id}/appointment`);
+  };
+
   return (
     <div style={{ padding: "20px" }}>
       <h2>Find a Doctor</h2>
@@ -57,20 +62,25 @@ const Doctors = () => {
               }}
             >
               <h3>{doc.name}</h3>
-              <p>
-                <strong>Age:</strong> {doc.age}
-              </p>
-              <p>
-                <strong>Gender:</strong> {doc.gender}
-              </p>
-              <p>
-                <strong>Phone:</strong> {doc.contacts}
-              </p>
-              {doc.details && (
-                <p>
-                  <strong>Details:</strong> {doc.details}
-                </p>
-              )}
+              <p><strong>Age:</strong> {doc.age}</p>
+              <p><strong>Gender:</strong> {doc.gender}</p>
+              <p><strong>Phone:</strong> {doc.contacts}</p>
+              {doc.details && <p><strong>Details:</strong> {doc.details}</p>}
+              
+              <button
+                onClick={() => handleAppointment(doc.doctor_id)}
+                style={{
+                  marginTop: "10px",
+                  padding: "8px 16px",
+                  backgroundColor: "#007bff",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+              >
+                Make Appointment
+              </button>
             </div>
           ))}
         </div>
