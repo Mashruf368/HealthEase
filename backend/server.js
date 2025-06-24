@@ -16,6 +16,8 @@ const appointment = require("./routes/appointment");
 const appointment_admin = require("./routes/appointment_admin");
 const presc = require("./routes/Prescription/prescription");
 const writepresc = require("./routes/Prescription/write_prescription");
+const dash_doc = require("./routes/dashboard/doctors");
+app.use("/", dash_doc);
 app.use("/newreg", jwtreg);
 app.use("/a", validtest);
 app.use("/a", profile);
