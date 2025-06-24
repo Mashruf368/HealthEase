@@ -19,11 +19,12 @@ const writepresc = require("./routes/Prescription/write_prescription");
 const dash_doc = require("./routes/dashboard/doctors");
 app.use("/", dash_doc);
 app.use("/", appointment);
+app.use("/", appointment_admin);
 app.use("/newreg", jwtreg);
 app.use("/a", validtest);
 app.use("/a", profile);
 
-app.use("/a", appointment_admin);
+
 app.use("/a", presc);
 app.use("/a", writepresc);
 
