@@ -8,6 +8,11 @@ const Dashboard = () => {
     navigate(path);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // clear the token
+    navigate("/login");               // redirect to login
+  };
+
   return (
     <div style={{ padding: "2rem", textAlign: "center" }}>
       <h2>Welcome to the Dashboard</h2>
@@ -48,6 +53,21 @@ const Dashboard = () => {
           }}
         >
           Profile
+        </button>
+
+        <button
+          onClick={handleLogout}
+          style={{
+            padding: "1rem 2rem",
+            fontSize: "1rem",
+            cursor: "pointer",
+            borderRadius: "8px",
+            backgroundColor: "#dc3545",
+            color: "white",
+            border: "none",
+          }}
+        >
+          Logout
         </button>
       </div>
     </div>
