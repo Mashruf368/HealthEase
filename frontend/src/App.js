@@ -11,7 +11,11 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminAppointments from "./pages/appointmentadmin";
 import Doctors from "./pages/doctors";
 import AppointmentPage from "./pages/appointment";
+import DoctorDashboard from "./pages/DoctorDashboard";
 import PrivateRoute from "./component/privateroute";
+import PrivateRouteAdmin from "./component/privaterouteadmin";
+import PrivateRouteDoctor from "./component/privateroutedoctor";
+import DoctorAppointment from "./pages/appointmentdoctor";
 
 function App() {
   return (
@@ -52,18 +56,35 @@ function App() {
         <Route
           path="/admin/dashboard"
           element={
-            <PrivateRoute>
+            <PrivateRouteAdmin>
               <AdminDashboard />
-            </PrivateRoute>
+            </PrivateRouteAdmin>
           }
         />
 
         <Route
           path="/admin/appointments"
           element={
-            <PrivateRoute>
+            <PrivateRouteAdmin>
               <AdminAppointments />
-            </PrivateRoute>
+            </PrivateRouteAdmin>
+          }
+        />
+
+        <Route
+          path="/doctor/dashboard"
+          element={
+            <PrivateRouteDoctor>
+              <DoctorDashboard />
+            </PrivateRouteDoctor>
+          }
+        />
+        <Route
+          path="/doctor/appointments"
+          element={
+            <PrivateRouteDoctor>
+              <DoctorAppointment />
+            </PrivateRouteDoctor>
           }
         />
 

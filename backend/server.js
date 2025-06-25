@@ -17,15 +17,17 @@ const appointment_admin = require("./routes/appointment_admin");
 const presc = require("./routes/Prescription/prescription");
 const writepresc = require("./routes/Prescription/write_prescription");
 const dash_doc = require("./routes/dashboard/doctors");
+const profileRoute = require("./routes/profile_role");
+app.use("/api", profileRoute);
 app.use("/", dash_doc);
 app.use("/", appointment);
 app.use("/", appointment_admin);
+app.use("/", presc);
 app.use("/newreg", jwtreg);
 app.use("/a", validtest);
 app.use("/a", profile);
 
 
-app.use("/a", presc);
 app.use("/a", writepresc);
 
 app.get("/testing", async (req, res) => {

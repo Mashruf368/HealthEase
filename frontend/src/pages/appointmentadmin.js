@@ -107,18 +107,20 @@ const AdminAppointments = () => {
                 <td>{appt.details}</td>
                 <td>
                   <button
-                    onClick={() => approveAppointment(appt.appointment_id)}
-                    style={{
-                      padding: "0.5rem",
-                      backgroundColor: "#28a745",
-                      color: "white",
-                      border: "none",
-                      borderRadius: "4px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    Approve
-                  </button>
+  onClick={() => approveAppointment(appt.appointment_id)}
+  disabled={message === "Appointment approved"} // optional
+  style={{
+    padding: "0.5rem",
+    backgroundColor: "#28a745",
+    color: "white",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer",
+    opacity: message === "Appointment approved" ? 0.6 : 1,
+  }}
+>
+  Approve
+</button>
                 </td>
               </tr>
             ))}
