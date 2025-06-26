@@ -31,27 +31,31 @@ router.get("/admin/appointments", authorizeadmin, async (req, res) => {
   }
 });
 
-router.patch("/admin/appointments/:id/approve", authorizeadmin, async (req, res) => {
-  try {
-    const { scheduled_time } = req.body;
-    const appointment_id = req.params.id;
+router.patch(
+  "/admin/appointments/:id/approve",
+  authorizeadmin,
+  async (req, res) => {
+    try {
+      const { scheduled_time } = req.body;
+      const appointment_id = req.params.id;
 
-    const result = await pool.query(
-      `UPDATE appointment SET status = 'A', 
+      const result = await pool.query(
+        `UPDATE appointment SET status = 'A', 
        scheduled_time = COALESCE($1, scheduled_time) 
        WHERE appointment_id = $2 RETURNING *`,
-      [scheduled_time, appointment_id]
-    );
+        [scheduled_time, appointment_id]
+      );
 
-    if (result.rows.length === 0) {
-      return res.status(404).json("Appointment not found");
+      if (result.rows.length === 0) {
+        return res.status(404).json("Appointment not found");
+      }
+
+      res.status(200).json("Appointment approved");
+    } catch (err) {
+      res.status(401).json("Server error: " + err.message);
     }
-
-    res.status(200).json("Appointment approved");
-  } catch (err) {
-    res.status(401).json("Server error: " + err.message);
   }
-});
+);
 
 router.get("/doctor/:id/schedule", authorizeadmin, async (req, res) => {
   try {
@@ -73,8 +77,5 @@ router.get("/doctor/:id/schedule", authorizeadmin, async (req, res) => {
     res.status(500).json("Server error: " + err.message);
   }
 });
-
-
-
 
 module.exports = router;

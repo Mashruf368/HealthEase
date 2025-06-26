@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token"); // clear the token
-    navigate("/login");               // redirect to login
+    navigate("/login"); // redirect to login
   };
 
   return (

@@ -16,6 +16,7 @@ import PrivateRoute from "./component/privateroute";
 import PrivateRouteAdmin from "./component/privaterouteadmin";
 import PrivateRouteDoctor from "./component/privateroutedoctor";
 import DoctorAppointment from "./pages/appointmentdoctor";
+import Profile from "./pages/profile";
 
 function App() {
   return (
@@ -85,6 +86,15 @@ function App() {
             <PrivateRouteDoctor>
               <DoctorAppointment />
             </PrivateRouteDoctor>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
           }
         />
 
