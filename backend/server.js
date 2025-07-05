@@ -28,7 +28,7 @@ app.use("/", presc);
 app.use("/newreg", jwtreg);
 app.use("/a", validtest);
 
-app.use("/a", writepresc);
+app.use("/", writepresc);
 
 app.get("/testing", async (req, res) => {
   res.send("hello how hi are u");

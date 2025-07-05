@@ -1,3 +1,4 @@
+// --- DoctorAppointments.js ---
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -17,13 +18,16 @@ const DoctorAppointments = () => {
 
     const fetchAppointments = async () => {
       try {
-        const response = await fetch("http://localhost:3001/doctor/appointments", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            token: token,
-          },
-        });
+        const response = await fetch(
+          "http://localhost:3001/doctor/appointments",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              token: token,
+            },
+          }
+        );
 
         const data = await response.json();
 
@@ -43,7 +47,8 @@ const DoctorAppointments = () => {
     fetchAppointments();
   }, [token, navigate]);
 
-  if (loading) return <p style={{ padding: "2rem" }}>Loading appointments...</p>;
+  if (loading)
+    return <p style={{ padding: "2rem" }}>Loading appointments...</p>;
 
   return (
     <div style={{ padding: "2rem" }}>
@@ -62,6 +67,7 @@ const DoctorAppointments = () => {
               <th>Patient</th>
               <th>Status</th>
               <th>Details</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -73,6 +79,25 @@ const DoctorAppointments = () => {
                 <td>{appt.patient_name}</td>
                 <td>{appt.status}</td>
                 <td>{appt.details}</td>
+                <td>
+                  <button
+                    onClick={() =>
+                      navigate(
+                        `/doctor/appointments/${appt.appointment_id}/prescribe`
+                      )
+                    }
+                    style={{
+                      padding: "0.5rem",
+                      backgroundColor: "#007bff",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Write Prescription
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

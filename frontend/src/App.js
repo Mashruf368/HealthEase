@@ -17,6 +17,7 @@ import PrivateRouteAdmin from "./component/privaterouteadmin";
 import PrivateRouteDoctor from "./component/privateroutedoctor";
 import DoctorAppointment from "./pages/appointmentdoctor";
 import Profile from "./pages/profile";
+import WritePrescription from "./pages/Prescription/prescription";
 
 function App() {
   return (
@@ -99,6 +100,15 @@ function App() {
         />
 
         {/* Add more protected routes here as needed */}
+
+        <Route
+          path="/doctor/appointments/:id/prescribe"
+          element={
+            <PrivateRouteDoctor>
+              <WritePrescription />
+            </PrivateRouteDoctor>
+          }
+        />
       </Routes>
     </Router>
   );

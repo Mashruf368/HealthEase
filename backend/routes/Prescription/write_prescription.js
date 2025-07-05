@@ -27,9 +27,10 @@ router.post(
 
       const { symptoms, comments, date, medicines, tests, surgeries } =
         req.body;
-      console.log(medicines);
-      console.log(tests);
-      console.log(surgeries);
+      // console.log(medicines);
+      // console.log(tests);
+      // console.log(surgeries);
+      console.log("Prescription request body:", req.body);
 
       // Insert into prescription
       const prescriptionResult = await pool.query(
@@ -78,7 +79,7 @@ router.post(
         `UPDATE appointment SET status = 'C' WHERE appointment_id = $1`,
         [appointmentId]
       );
-      console.log(hello)
+      //console.log(hello);
 
       //await client.query("COMMIT");
       res.status(201).json({
