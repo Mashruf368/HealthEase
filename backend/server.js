@@ -19,6 +19,7 @@ const writepresc = require("./routes/Prescription/write_prescription");
 const dash_doc = require("./routes/dashboard/doctors");
 const profileRoute = require("./routes/profile_role");
 const prev_presc = require("./routes/Patient/prev_appointments");
+const view_presc = require("./routes/Patient/view_prescription");
 app.use("/", profile);
 
 app.use("/api", profileRoute);
@@ -31,6 +32,7 @@ app.use("/newreg", jwtreg);
 app.use("/a", validtest);
 
 app.use("/", writepresc);
+app.use("/", view_presc);
 
 app.get("/testing", async (req, res) => {
   res.send("hello how hi are u");

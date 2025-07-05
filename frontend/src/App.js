@@ -18,6 +18,7 @@ import PrivateRouteDoctor from "./component/privateroutedoctor";
 import DoctorAppointment from "./pages/appointmentdoctor";
 import Profile from "./pages/Patient/profile";
 import WritePrescription from "./pages/Prescription/prescription";
+import Patviewpresc from "./pages/Patient/PrescriptionDetails";
 
 function App() {
   return (
@@ -107,6 +108,14 @@ function App() {
             <PrivateRouteDoctor>
               <WritePrescription />
             </PrivateRouteDoctor>
+          }
+        />
+        <Route
+          path="/prescription/:id"
+          element={
+            <PrivateRoute>
+              <Patviewpresc />
+            </PrivateRoute>
           }
         />
       </Routes>
