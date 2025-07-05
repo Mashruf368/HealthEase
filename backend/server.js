@@ -18,6 +18,7 @@ const presc = require("./routes/Prescription/prescription");
 const writepresc = require("./routes/Prescription/write_prescription");
 const dash_doc = require("./routes/dashboard/doctors");
 const profileRoute = require("./routes/profile_role");
+const prev_presc = require("./routes/Patient/prev_appointments");
 app.use("/", profile);
 
 app.use("/api", profileRoute);
@@ -25,6 +26,7 @@ app.use("/", dash_doc);
 app.use("/", appointment);
 app.use("/", appointment_admin);
 app.use("/", presc);
+app.use("/", prev_presc);
 app.use("/newreg", jwtreg);
 app.use("/a", validtest);
 

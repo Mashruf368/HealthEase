@@ -16,7 +16,7 @@ import PrivateRoute from "./component/privateroute";
 import PrivateRouteAdmin from "./component/privaterouteadmin";
 import PrivateRouteDoctor from "./component/privateroutedoctor";
 import DoctorAppointment from "./pages/appointmentdoctor";
-import Profile from "./pages/profile";
+import Profile from "./pages/Patient/profile";
 import WritePrescription from "./pages/Prescription/prescription";
 
 function App() {
