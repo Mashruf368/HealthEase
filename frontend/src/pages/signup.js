@@ -30,10 +30,11 @@ const Signup = () => {
     setSuccess("");
 
     try {
-      const response = await fetch("http://localhost:3001/register", {
+      const genderShort = formData.gender === "Male" ? "M" : "F";
+      const response = await fetch("http://localhost:3001/newreg/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, gender: genderShort }),
       });
 
       if (!response.ok) {
