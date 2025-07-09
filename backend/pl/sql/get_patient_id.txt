@@ -1,0 +1,9 @@
+CREATE OR REPLACE FUNCTION get_patient_id_from_user(p_user_id INT)
+RETURNS INT AS $$
+DECLARE
+  p_patient_id INT;
+BEGIN
+  SELECT patient_id INTO p_patient_id FROM patient WHERE user_id = p_user_id;
+  RETURN p_patient_id;
+END;
+$$ LANGUAGE plpgsql;

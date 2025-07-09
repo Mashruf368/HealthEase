@@ -7,8 +7,7 @@ router.post("/doctors/:id/appointment", authorization, async (req, res) => {
   try {
     const userid = req.user;
     const user = await pool.query(
-      `select * from patient 
-        where user_id = $1`,
+      `SELECT get_patient_id_from_user($1) AS patient_id`,
       [userid]
     );
     patientid = user.rows[0].patient_id;
