@@ -1,0 +1,22 @@
+CREATE OR REPLACE FUNCTION create_patient_on_account_insert()
+RETURNS TRIGGER AS $$
+DECLARE
+  patient_data JSONB;
+BEGIN
+  IF NEW.role = 'PAT' THEN
+    patient_data := NEW.extra_data;
+
+    INSERT INTO patient(name, age, contact_no, address, gender, user_id)
+    VALUES (
+      patient_data->>'name',
+      (patient_data->>'age')::INT,
+      patient_data->>'contact_no',
+      patient_data->>'address',
+      (patient_data->>'gender')::gender,  -- Cast to enum type here
+      NEW.user_id
+    );
+  END IF;
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;

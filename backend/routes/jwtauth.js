@@ -4,39 +4,77 @@ const bcrypt = require("bcrypt");
 const jwtGenerator = require("../utils/jwtGenerator");
 router.post("/register", async (req, res) => {
   try {
+    // const { username, password, name, age, contact_no, address, gender } =
+    //   req.body;
+    // const result = await pool.query(
+    //   "select * from accounts where username = $1",
+    //   [username]
+    // );
+    // if (result.rows.length > 0) {
+    //   return res.status(401).send("username not available");
+    // }
+
+    // //hashing
+    // const saltround = 10;
+    // const gensalt = await bcrypt.genSalt(saltround);
+    // const bcryptpassword = await bcrypt.hash(password, gensalt);
+    // console.log(bcryptpassword);
+
+    // //insert
+    // const newuser = await pool.query(
+    //   "insert into accounts(username,password,role) values ($1,$2,'PAT') returning *",
+    //   [username, bcryptpassword]
+    // );
+    // console.log("insertion complete");
+    // //res.json(newuser.rows[0]);
+    // //return res.status(201).send("insertion successful");
+
+    // //token
+    // const patienttableupdate = await pool.query(
+    //   `insert into
+    //   patient(name,age,contact_no,address,gender,user_id) values
+    //   ($1,$2,$3,$4,$5,$6)`,
+    //   [name, age, contact_no, address, gender, newuser.rows[0].user_id]
+    // );
+    // const token = jwtGenerator(newuser.rows[0].user_id);
+    // return res.status(200).json({ token });
     const { username, password, name, age, contact_no, address, gender } =
       req.body;
-    const result = await pool.query(
-      "select * from accounts where username = $1",
+
+    // Check if username is already taken
+    const userExists = await pool.query(
+      "SELECT * FROM accounts WHERE username = $1",
       [username]
     );
-    if (result.rows.length > 0) {
-      return res.status(401).send("username not available");
+    if (userExists.rows.length > 0) {
+      return res.status(401).send("Username not available");
     }
 
-    //hashing
-    const saltround = 10;
-    const gensalt = await bcrypt.genSalt(saltround);
-    const bcryptpassword = await bcrypt.hash(password, gensalt);
-    console.log(bcryptpassword);
+    // Hash password
+    const saltRounds = 10;
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-    //insert
-    const newuser = await pool.query(
-      "insert into accounts(username,password,role) values ($1,$2,'PAT') returning *",
-      [username, bcryptpassword]
+    // Create user and let trigger insert into 'patient'
+    const newUser = await pool.query(
+      `INSERT INTO accounts (username, password, role, extra_data)
+       VALUES ($1, $2, 'PAT', $3)
+       RETURNING user_id`,
+      [
+        username,
+        hashedPassword,
+        {
+          name,
+          age,
+          contact_no,
+          address,
+          gender,
+        }, // extra_data JSON
+      ]
     );
-    console.log("insertion complete");
-    //res.json(newuser.rows[0]);
-    //return res.status(201).send("insertion successful");
 
-    //token
-    const patienttableupdate = await pool.query(
-      `insert into 
-      patient(name,age,contact_no,address,gender,user_id) values
-      ($1,$2,$3,$4,$5,$6)`,
-      [name, age, contact_no, address, gender, newuser.rows[0].user_id]
-    );
-    const token = jwtGenerator(newuser.rows[0].user_id);
+    // Generate JWT token
+    const token = jwtGenerator(newUser.rows[0].user_id);
     return res.status(200).json({ token });
   } catch (err) {
     console.log(err);

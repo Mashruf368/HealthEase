@@ -75,10 +75,10 @@ router.post(
         }
       }
 
-      await pool.query(
-        `UPDATE appointment SET status = 'C' WHERE appointment_id = $1`,
-        [appointmentId]
-      );
+      // await pool.query(
+      //   `UPDATE appointment SET status = 'C' WHERE appointment_id = $1`,
+      //   [appointmentId]
+      // );
       //console.log(hello);
 
       //await client.query("COMMIT");
