@@ -12,7 +12,7 @@ BEGIN
       (patient_data->>'age')::INT,
       patient_data->>'contact_no',
       patient_data->>'address',
-      (patient_data->>'gender')::gender,  -- Cast to enum type here
+      (patient_data->>'gender')::gender,  
       NEW.user_id
     );
   END IF;

@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
   const [error, setError] = useState("");
+  const [searchName, setSearchName] = useState("");
+  const [specialityFilter, setSpecialityFilter] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,17 +45,58 @@ const Doctors = () => {
     navigate(`/doctor/${id}/appointment`);
   };
 
+  // Extract unique specialities
+  const specialities = [
+    ...new Set(doctors.map((doc) => doc.speciality).filter(Boolean)),
+  ];
+
+  // Filtered doctors
+  const filteredDoctors = doctors.filter((doc) => {
+    const matchesName = doc.name
+      .toLowerCase()
+      .includes(searchName.toLowerCase());
+    const matchesSpeciality = specialityFilter
+      ? doc.speciality === specialityFilter
+      : true;
+    return matchesName && matchesSpeciality;
+  });
+
   return (
     <div style={{ padding: "20px" }}>
       <h2>Find a Doctor</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      {doctors.length === 0 && !error ? (
-        <p>Loading doctors...</p>
+
+      {/* Search Inputs */}
+      <div style={{ marginBottom: "20px" }}>
+        <input
+          type="text"
+          placeholder="Search by name"
+          value={searchName}
+          onChange={(e) => setSearchName(e.target.value)}
+          style={{ padding: "8px", marginRight: "10px" }}
+        />
+
+        <select
+          value={specialityFilter}
+          onChange={(e) => setSpecialityFilter(e.target.value)}
+          style={{ padding: "8px" }}
+        >
+          <option value="">All Specialities</option>
+          {specialities.map((spec, idx) => (
+            <option key={idx} value={spec}>
+              {spec}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {filteredDoctors.length === 0 && !error ? (
+        <p>No doctors found.</p>
       ) : (
         <div style={{ display: "grid", gap: "16px" }}>
-          {doctors.map((doc, index) => (
+          {filteredDoctors.map((doc) => (
             <div
-              key={index}
+              key={doc.doctor_id}
               style={{
                 border: "1px solid #ccc",
                 padding: "16px",
@@ -62,11 +105,24 @@ const Doctors = () => {
               }}
             >
               <h3>{doc.name}</h3>
-              <p><strong>Age:</strong> {doc.age}</p>
-              <p><strong>Gender:</strong> {doc.gender}</p>
-              <p><strong>Phone:</strong> {doc.contacts}</p>
-              {doc.details && <p><strong>Details:</strong> {doc.details}</p>}
-              
+
+              {doc.speciality && (
+                <p>
+                  <strong>Speciality:</strong> {doc.speciality}
+                </p>
+              )}
+
+              {/* Degrees list (only degree_name and institute) */}
+              {doc.degrees && doc.degrees.length > 0 && (
+                <ul>
+                  {doc.degrees.map((deg, idx) => (
+                    <li key={idx}>
+                      {deg.degree_name} ({deg.institute})
+                    </li>
+                  ))}
+                </ul>
+              )}
+
               <button
                 onClick={() => handleAppointment(doc.doctor_id)}
                 style={{
