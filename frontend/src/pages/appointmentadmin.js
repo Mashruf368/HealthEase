@@ -18,13 +18,16 @@ const AdminAppointments = () => {
 
     const fetchAppointments = async () => {
       try {
-        const response = await fetch("http://localhost:3001/admin/appointments", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            token: token,
-          },
-        });
+        const response = await fetch(
+          "http://localhost:3001/admin/appointments",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              token: token,
+            },
+          }
+        );
 
         const data = await response.json();
 
@@ -72,7 +75,8 @@ const AdminAppointments = () => {
     }
   };
 
-  if (loading) return <p style={{ padding: "2rem" }}>Loading appointments...</p>;
+  if (loading)
+    return <p style={{ padding: "2rem" }}>Loading appointments...</p>;
 
   return (
     <div style={{ padding: "2rem" }}>
@@ -105,7 +109,8 @@ const AdminAppointments = () => {
                 <td>{appt.doctor_name}</td>
                 <td>{appt.branch_name}</td>
                 <td>{appt.details}</td>
-                <td>
+                {
+                  /* <td>
                   <button
   onClick={() => approveAppointment(appt.appointment_id)}
   disabled={message === "Appointment approved"} // optional
@@ -121,7 +126,25 @@ const AdminAppointments = () => {
 >
   Approve
 </button>
-                </td>
+                </td> */
+                  <td>
+                    <button
+                      onClick={() =>
+                        navigate(`/admin/doctor/${appt.doctor_id}/schedule`)
+                      }
+                      style={{
+                        padding: "0.5rem",
+                        backgroundColor: "#007bff",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "4px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      View Doctor Schedule
+                    </button>
+                  </td>
+                }
               </tr>
             ))}
           </tbody>

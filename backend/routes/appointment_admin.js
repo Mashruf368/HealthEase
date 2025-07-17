@@ -78,4 +78,25 @@ router.get("/doctor/:id/schedule", authorizeadmin, async (req, res) => {
   }
 });
 
+router.get("/admin/appointments/:id", authorizeadmin, async (req, res) => {
+  try {
+    const docid = req.params.id;
+
+    const result = await pool.query(
+      `SELECT a.appointment_id, a.date, a.scheduled_time, a.status, a.details,
+              p.name AS patient_name, d.name AS doctor_name
+       FROM appointment a
+       JOIN patient p ON a.patient_id = p.patient_id
+       JOIN doctor d ON a.doctor_id = d.doctor_id
+       WHERE a.doctor_id = $1
+       ORDER BY a.date ASC, a.scheduled_time ASC`,
+      [docid]
+    );
+
+    res.status(200).json(result.rows);
+  } catch (err) {
+    res.status(500).json("Server error: " + err.message);
+  }
+});
+
 module.exports = router;

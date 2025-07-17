@@ -19,7 +19,7 @@ import DoctorAppointment from "./pages/appointmentdoctor";
 import Profile from "./pages/Patient/profile";
 import WritePrescription from "./pages/Prescription/prescription";
 import Patviewpresc from "./pages/Patient/PrescriptionDetails";
-
+import DoctorSchedulePage from "./pages/DoctorSchedulePage";
 function App() {
   return (
     <Router>
@@ -30,6 +30,10 @@ function App() {
         <Route path="/login/admin" element={<LoginAdmin />} />
         <Route path="/login/doctor" element={<LoginDoctor />} />
         <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/admin/doctor/:id/schedule"
+          element={<DoctorSchedulePage />}
+        />
 
         {/* Protected Routes */}
         <Route
