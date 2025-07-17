@@ -1,10 +1,9 @@
-///doctor side to view and write prescription
-
-import React, { useState } from "react";
+// ///doctor side to view and write prescription
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const WritePrescription = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // appointment ID
   const navigate = useNavigate();
   const [form, setForm] = useState({
     symptoms: "",
@@ -15,6 +14,34 @@ const WritePrescription = () => {
     surgeries: [],
   });
   const [message, setMessage] = useState("");
+  const [prescriptions, setPrescriptions] = useState([]);
+  const [showPrescriptions, setShowPrescriptions] = useState(false);
+
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (!token) navigate("/login");
+  }, [token, navigate]);
+
+  const fetchPrescriptions = async () => {
+    try {
+      const res = await fetch(
+        `http://localhost:3001/profile/prescriptions/${id}`,
+        {
+          headers: { "Content-Type": "application/json", token },
+        }
+      );
+      const data = await res.json();
+      if (res.ok) {
+        setPrescriptions(data);
+      } else {
+        setMessage("Failed to fetch prescriptions");
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage("Error fetching prescriptions");
+    }
+  };
 
   const handleArrayChange = (type, index, field, value) => {
     const updated = [...form[type]];
@@ -28,7 +55,6 @@ const WritePrescription = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("token");
     try {
       const res = await fetch(
         `http://localhost:3001/doctor/appointments/${id}/prescription`,
@@ -49,51 +75,44 @@ const WritePrescription = () => {
         setMessage(data.error || "Failed to submit");
       }
     } catch (err) {
-      setMessage("Server error" + err);
+      setMessage("Server error: " + err);
     }
+  };
+
+  const togglePrescriptions = () => {
+    setShowPrescriptions(!showPrescriptions);
+    if (!showPrescriptions) fetchPrescriptions();
   };
 
   return (
     <div style={{ padding: "2rem" }}>
       <h2>Write Prescription</h2>
       {message && <p style={{ color: "red" }}>{message}</p>}
+
       <form onSubmit={handleSubmit}>
-        <label>
-          Symptoms:
-          <br />
-          <textarea
-            value={form.symptoms}
-            onChange={(e) => setForm({ ...form, symptoms: e.target.value })}
-            required
-          />
-        </label>
-        <br />
-        <br />
+        <label>Symptoms:</label>
+        <textarea
+          value={form.symptoms}
+          onChange={(e) => setForm({ ...form, symptoms: e.target.value })}
+          required
+        />
 
-        <label>
-          Comments:
-          <br />
-          <textarea
-            value={form.comments}
-            onChange={(e) => setForm({ ...form, comments: e.target.value })}
-            required
-          />
-        </label>
         <br />
-        <br />
+        <label>Comments:</label>
+        <textarea
+          value={form.comments}
+          onChange={(e) => setForm({ ...form, comments: e.target.value })}
+          required
+        />
 
-        <label>
-          Date:
-          <br />
-          <input
-            type="date"
-            value={form.date}
-            onChange={(e) => setForm({ ...form, date: e.target.value })}
-            required
-          />
-        </label>
         <br />
-        <br />
+        <label>Date:</label>
+        <input
+          type="date"
+          value={form.date}
+          onChange={(e) => setForm({ ...form, date: e.target.value })}
+          required
+        />
 
         <h4>Medicines</h4>
         {form.medicines.map((med, idx) => (
@@ -185,6 +204,71 @@ const WritePrescription = () => {
         <br />
         <button type="submit">Submit Prescription</button>
       </form>
+
+      <hr style={{ margin: "2rem 0" }} />
+
+      <button
+        onClick={togglePrescriptions}
+        style={{
+          backgroundColor: "#28a745",
+          color: "white",
+          padding: "0.5rem 1rem",
+          border: "none",
+          borderRadius: "4px",
+          marginBottom: "1rem",
+          cursor: "pointer",
+        }}
+      >
+        {showPrescriptions
+          ? "Hide Previous Prescriptions"
+          : "Show Previous Prescriptions"}
+      </button>
+
+      {showPrescriptions && (
+        <div>
+          <h3>Previous Prescriptions</h3>
+          {prescriptions.length === 0 ? (
+            <p>No prescriptions found</p>
+          ) : (
+            prescriptions.map((pres, index) => (
+              <div
+                key={index}
+                style={{
+                  border: "1px solid #ccc",
+                  padding: "1rem",
+                  marginBottom: "1rem",
+                }}
+              >
+                <p>
+                  <strong>Date:</strong> {pres.date}
+                </p>
+                <p>
+                  <strong>Symptoms:</strong> {pres.symptoms}
+                </p>
+                <p>
+                  <strong>Comments:</strong> {pres.comments}
+                </p>
+                <button
+                  style={{
+                    marginTop: "0.5rem",
+                    backgroundColor: "#007bff",
+                    color: "white",
+                    padding: "0.5rem 1rem",
+                    border: "none",
+                    borderRadius: "4px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() =>
+                    navigate(`/prescription/${pres.consultation_id}`)
+                  }
+                >
+                  View Details
+                </button>
+              </div>
+            ))
+          )}
+        </div>
+      )}
     </div>
   );
 };

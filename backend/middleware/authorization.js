@@ -11,6 +11,7 @@ module.exports = async (req, res, next) => {
     req.user = payload.user;
     console.log("token " + jwtToken);
     console.log("payload " + payload);
+    console.log("auth passed");
     next();
   } catch (err) {
     console.error(err.message);
