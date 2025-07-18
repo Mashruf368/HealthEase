@@ -57,9 +57,9 @@ router.post(
       if (Array.isArray(tests)) {
         for (let test of tests) {
           await pool.query(
-            `INSERT INTO prescribed_test (consultation_id, test_id, notes)
-           VALUES ($1, $2, $3)`,
-            [consultationId, test.test_id, test.notes]
+            `INSERT INTO recommended_tests (consultation_id, test_id, comments,patient_id)
+           VALUES ($1, $2, $3,$4)`,
+            [consultationId, test.test_id, test.notes,patientId]
           );
         }
       }

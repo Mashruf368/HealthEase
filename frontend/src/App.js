@@ -21,6 +21,7 @@ import WritePrescription from "./pages/Prescription/prescription";
 import Patviewpresc from "./pages/Patient/PrescriptionDetails";
 import DoctorSchedulePage from "./pages/DoctorSchedulePage";
 import AdminPrescriptions from "./pages/admin/adminprescription";
+import AdminPrescriptionDetails from "./pages/admin/adminprescriptiondetails";
 function App() {
   return (
     <Router>
@@ -32,6 +33,10 @@ function App() {
         <Route path="/login/doctor" element={<LoginDoctor />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/admin/prescriptions" element={<AdminPrescriptions />} />
+        <Route
+          path="/admin/prescription/:id"
+          element={<AdminPrescriptionDetails />}
+        />
 
         <Route
           path="/admin/doctor/:id/schedule"

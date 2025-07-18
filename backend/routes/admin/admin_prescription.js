@@ -14,7 +14,7 @@ router.get("/admin/prescriptions", authorizeadmin, async (req, res) => {
         and pp.patient_id = p.patient_id
         and dd.doctor_id = p.doctor_id`
     );
-    console.log(result.rows);
+    //console.log(result.rows);
     res.status(200).json(result.rows);
   } catch (err) {
     res.status(500).json("Server error: " + err.message);
