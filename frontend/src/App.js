@@ -20,6 +20,7 @@ import Profile from "./pages/Patient/profile";
 import WritePrescription from "./pages/Prescription/prescription";
 import Patviewpresc from "./pages/Patient/PrescriptionDetails";
 import DoctorSchedulePage from "./pages/DoctorSchedulePage";
+import AdminPrescriptions from "./pages/admin/adminprescription";
 function App() {
   return (
     <Router>
@@ -30,6 +31,8 @@ function App() {
         <Route path="/login/admin" element={<LoginAdmin />} />
         <Route path="/login/doctor" element={<LoginDoctor />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/admin/prescriptions" element={<AdminPrescriptions />} />
+
         <Route
           path="/admin/doctor/:id/schedule"
           element={<DoctorSchedulePage />}

@@ -20,8 +20,10 @@ const dash_doc = require("./routes/dashboard/doctors");
 const profileRoute = require("./routes/profile_role");
 const prev_presc = require("./routes/Patient/prev_appointments");
 const view_presc = require("./routes/Patient/view_prescription");
-app.use("/", profile);
 
+const admin_prescription = require("./routes/admin/admin_prescription");
+app.use("/", profile);
+app.use("/", admin_prescription);
 app.use("/api", profileRoute);
 app.use("/", dash_doc);
 app.use("/", appointment);
