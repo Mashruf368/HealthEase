@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res, next) => {
   try {
+    console.log("in auth");
     const jwtToken = req.header("token");
     if (!jwtToken) {
       return res.status(403).json("Not authorized");

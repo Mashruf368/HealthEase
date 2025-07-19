@@ -23,6 +23,7 @@ import DoctorSchedulePage from "./pages/DoctorSchedulePage";
 import AdminPrescriptions from "./pages/admin/adminprescription";
 import AdminPrescriptionDetails from "./pages/admin/adminprescriptiondetails";
 import AdminSignIn from "./pages/AdminSignin";
+import AdminPending from "./pages/admin/adminpendingaccounts";
 function App() {
   return (
     <Router>
@@ -35,6 +36,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/admin/prescriptions" element={<AdminPrescriptions />} />
         <Route path="/admin/signin" element={<AdminSignIn />} />
+        <Route path="/admin/pending" element={<AdminPending />} />
         <Route
           path="/admin/prescription/:id"
           element={<AdminPrescriptionDetails />}

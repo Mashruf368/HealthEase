@@ -1,25 +1,23 @@
 const express = require("express");
 const pool = require("../db");
 const jwtGenerator = require("../utils/jwtGenerator");
-const authorize = require("../middleware/authorize"); // Make sure this checks admin role
+//const authorize = require("../middleware/authorize"); // Make sure this checks admin role
+const authorization = require("../middleware/authorization");
 const router = express.Router();
 
-router.post("/approve/:username", authorize, async (req, res) => {
+router.post("/admin/approve/:username", authorization, async (req, res) => {
   const username = req.params.username;
 
   try {
     // Only allow admins to approve
-    const adminUser = req.user;
-    if (adminUser.role !== "ADM") {
-      return res.status(403).send("Access denied");
-    }
 
+    console.log("in backend of aprove pending");
     const result = await pool.query(
       "SELECT * FROM pending_accounts WHERE username = $1",
       [username]
     );
     if (result.rows.length === 0) {
-      return res.status(404).send("No pending user found");
+      return res.status(404).json({ message: "No pending user found" });
     }
 
     const pending = result.rows[0];
@@ -49,7 +47,7 @@ router.post("/approve/:username", authorize, async (req, res) => {
     return res.status(201).json({ message: "Account approved", token });
   } catch (err) {
     console.error(err);
-    res.status(500).send("Approval failed: " + err.message);
+    res.status(500).json({ message: "Approval failed", error: err.message });
   }
 });
 
