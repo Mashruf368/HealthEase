@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+
+  background-color: #0b1e3c; /* Dark navy */
+  color: #f0f0f0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+/* Stylish brand on the left */
+.brand {
+  font-family: "Pacifico", cursive;
+  font-size: 1.8rem;
+  color: #66d9ef;
+  letter-spacing: 1px;
+}
+
+/* Nav links aligned right */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: #e2e8f0;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #66d9ef;
+}

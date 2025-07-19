@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure entire page background is white */
+html,
+body,
+#root {
+  height: 100%;
+  background-color: white !important;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Container pushed below fixed top bar (60px height) */
+.login-container {
+  margin-top: 60px; /* height of TopBar */
+  min-height: calc(100vh - 60px); /* fill remaining viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card with solid lighter blue background */
+.login-card {
+  background-color: #6a6ffb;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  color: white;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Title with subtle glow */
+.login-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  animation: loginGlow 3s ease-in-out infinite;
+}
+
+@keyframes loginGlow {
+  0%,
+  100% {
+    text-shadow: 0 0 10px #4e54c8, 0 0 20px #6a6ffb;
+  }
+  50% {
+    text-shadow: 0 0 15px #8f94fb, 0 0 30px #b3b7ff;
+  }
+}
+
+/* Form layout */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label {
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.login-form input {
+  margin-top: 0.4rem;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+.login-form input::placeholder {
+  color: #ddd;
+}
+
+.login-form input:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Submit button - dark violet */
+.login-form button {
+  margin-top: 1.5rem;
+  padding: 14px;
+  background-color: #4e54c8;
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+  background-color: #3b41a1;
+}
+
+/* Error message styling */
+.error-message {
+  margin-top: 1rem;
+  color: #ff6b6b;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Role buttons container */
+.role-buttons {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.role-buttons h4 {
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: 600;
+}
+
+/* Role buttons styling */
+.role-buttons button {
+  padding: 10px 20px;
+  margin: 0.4rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #4e54c8;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.role-buttons button:hover {
+  background-color: #3b41a1;
+}

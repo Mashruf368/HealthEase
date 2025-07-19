@@ -1,6 +1,6 @@
-// component/LoginForm.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+//import "../styles/LoginForm.css"; // Ensure your CSS file is correctly imported
 
 const LoginForm = ({ endpoint, redirectPath, showRoleButtons = false }) => {
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -42,63 +42,51 @@ const LoginForm = ({ endpoint, redirectPath, showRoleButtons = false }) => {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "auto", paddingTop: "2rem" }}>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-            autoFocus
-          />
-        </label>
-        <br />
-        <label>
-          Password
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <br />
-        <button type="submit" style={{ marginTop: "1rem" }}>
-          Login
-        </button>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-      </form>
+    <div className="login-container">
+      <div className="login-card">
+        <h2 className="login-title">Login</h2>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <label>
+            Username
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              required
+              placeholder="Enter your username"
+              autoFocus
+            />
+          </label>
+          <label>
+            Password
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              placeholder="Enter your password"
+            />
+          </label>
+          <button type="submit">Login</button>
+          {error && <p className="error-message">{error}</p>}
+        </form>
 
-      {showRoleButtons && (
-        <>
-          <hr style={{ margin: "2rem 0" }} />
-          <h4>Other Logins</h4>
-          <button onClick={() => goToRoleLogin("admin")} style={buttonStyle}>
-            Login as Admin
-          </button>
-          <br />
-          <button onClick={() => goToRoleLogin("doctor")} style={buttonStyle}>
-            Login as Doctor
-          </button>
-        </>
-      )}
+        {showRoleButtons && (
+          <div className="role-buttons">
+            <h4>Other Logins</h4>
+            <button onClick={() => goToRoleLogin("admin")}>
+              Login as Admin
+            </button>
+            <button onClick={() => goToRoleLogin("doctor")}>
+              Login as Doctor
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
-};
-
-const buttonStyle = {
-  marginTop: "1rem",
-  padding: "0.5rem 1rem",
-  borderRadius: "5px",
-  backgroundColor: "#007bff",
-  color: "white",
-  border: "none",
-  cursor: "pointer",
 };
 
 export default LoginForm;

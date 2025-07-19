@@ -1,0 +1,79 @@
+/* styles/Dashboard.css */
+@import url("https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap");
+
+.dashboard-container {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-header {
+  background-color: #6a6ffb; /* light blue */
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header .brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.dashboard-header button {
+  background-color: #dc3545;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-header button:hover {
+  background-color: #c82333;
+}
+
+.dashboard-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-buttons {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.dashboard-buttons button {
+  padding: 1.2rem 2.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-buttons .find-doctor {
+  background-color: #007bff;
+}
+
+.dashboard-buttons .find-doctor:hover {
+  background-color: #0056b3;
+}
+
+.dashboard-buttons .profile {
+  background-color: #28a745;
+}
+
+.dashboard-buttons .profile:hover {
+  background-color: #1e7e34;
+}
