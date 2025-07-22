@@ -24,6 +24,10 @@ import AdminPrescriptions from "./pages/admin/adminprescription";
 import AdminPrescriptionDetails from "./pages/admin/adminprescriptiondetails";
 import AdminSignIn from "./pages/AdminSignin";
 import AdminPending from "./pages/admin/adminpendingaccounts";
+import PharmacistDashboard from "./pages/NewAdmins/PharmacistDashboard";
+import PharmacistPrescriptions from "./pages/NewAdmins/PharmacistPrescriptions";
+import PharmacistPrescriptionDetails from "./pages/NewAdmins/PharmacistPrescriptionDetails";
+import PharmacistPatient from "./pages/NewAdmins/PharmacistPatient";
 function App() {
   return (
     <Router>
@@ -40,6 +44,16 @@ function App() {
         <Route
           path="/admin/prescription/:id"
           element={<AdminPrescriptionDetails />}
+        />
+        <Route path="/pharmacist/patient/:id" element={<PharmacistPatient />} />
+        <Route path="/pharmacist/dashboard" element={<PharmacistDashboard />} />
+        <Route
+          path="/pharmacist/prescriptions"
+          element={<PharmacistPrescriptions />}
+        />
+        <Route
+          path="/pharmacist/prescriptions/:id"
+          element={<PharmacistPrescriptionDetails />}
         />
 
         <Route

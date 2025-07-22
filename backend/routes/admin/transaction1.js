@@ -213,4 +213,50 @@ router.post("/admin/buy/:id", authorization, async (req, res) => {
   }
 });
 
+router.post("/pharmacist/buy/:id", authorization, async (req, res) => {
+  try {
+    const prescid = req.params.id;
+
+    // Get patient_id from prescription using consultation_id
+    const result = await pool.query(
+      `SELECT patient_id FROM prescription WHERE consultation_id = $1`,
+      [prescid]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Prescription not found" });
+    }
+
+    const patientid = result.rows[0].patient_id;
+    const { item_type, item_id, amount, created_at } = req.body;
+
+    if (!item_type || !item_id || !created_at) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+    // 💊 Handle medicine
+    const medResult = await pool.query(
+      `SELECT cost FROM medicine WHERE medicine_id = $1`,
+      [item_id]
+    );
+
+    if (medResult.rows.length === 0) {
+      return res.status(404).json({ error: "Medicine not found" });
+    }
+
+    const cost = medResult.rows[0].cost;
+    const finalCost = cost * amount;
+
+    await pool.query(
+      `INSERT INTO transaction (patient_id, item_type, item_id, amount, cost, created_at, state)
+         VALUES ($1, 'medicine', $2, $3, $4, $5, 'P')`,
+      [patientid, item_id, amount, finalCost, created_at]
+    );
+
+    return res.status(200).json({ message: "Medicine transaction recorded" });
+  } catch (err) {
+    console.error("Transaction insert error:", err);
+    res.status(500).json({ error: "Server error: " + err.message });
+  }
+});
+
 module.exports = router;

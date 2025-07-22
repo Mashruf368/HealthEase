@@ -147,28 +147,82 @@ router.post("/register/admin", async (req, res) => {
   }
 });
 
-router.post("/login/admin", async (req, res) => {
+// router.post("/login/admin", async (req, res) => {
+//   try {
+//     const { username, password } = req.body;
+//     const result = await pool.query(
+//       "select * from accounts where username = $1",
+//       [username]
+//     );
+//     if (result.rows.length == 0) {
+//       return res.status(401).json("invalid username or password");
+//     }
+//     const validpass = await bcrypt.compare(password, result.rows[0].password);
+
+//     console.log(validpass);
+//     if (!validpass) {
+//       return res.status(401).json("invalid username or password");
+//     }
+//     const token = jwtGenerator(result.rows[0].user_id);
+//     res.json({ token });
+//     return res.status(200);
+//   } catch (err) {
+//     res.status(401).send(err);
+//   }
+// });
+async function loginAdminType(req, res, requiredType = null) {
   try {
     const { username, password } = req.body;
+
+    console.log("in login admin backend");
     const result = await pool.query(
-      "select * from accounts where username = $1",
+      `SELECT a.user_id, a.password, ad.type
+       FROM accounts a
+       LEFT JOIN admin ad ON a.user_id = ad.user_id
+       WHERE a.username = $1 AND a.role = 'ADM'`,
       [username]
     );
-    if (result.rows.length == 0) {
-      return res.status(401).json("invalid username or password");
-    }
-    const validpass = await bcrypt.compare(password, result.rows[0].password);
 
-    console.log(validpass);
-    if (!validpass) {
-      return res.status(401).json("invalid username or password");
+    if (result.rows.length === 0) {
+      return res.status(401).json("Invalid username or password");
     }
-    const token = jwtGenerator(result.rows[0].user_id);
-    res.json({ token });
-    return res.status(200);
+
+    const user = result.rows[0];
+
+    const isValid = await bcrypt.compare(password, user.password);
+    if (!isValid) {
+      return res.status(401).json("Invalid username or password");
+    }
+
+    // Validate role type
+    if (requiredType === null && user.type !== null) {
+      return res.status(403).json("Access denied: Not an admin");
+    }
+    if (requiredType && user.type !== requiredType) {
+      return res.status(403).json(`Access denied: Not a ${requiredType}`);
+    }
+
+    const token = jwtGenerator(user.user_id);
+    return res.status(200).json({ token, type: user.type || "admin" });
   } catch (err) {
-    res.status(401).send(err);
+    console.error(err);
+    return res.status(500).json("Server error: " + err.message);
   }
+}
+
+// Admin login (type is null)
+router.post("/login/admin", async (req, res) => {
+  await loginAdminType(req, res, null);
+});
+
+// Pharmacist login
+router.post("/login/pharmacist", async (req, res) => {
+  await loginAdminType(req, res, "pharmacist");
+});
+
+// Pathologist login
+router.post("/login/pathologist", async (req, res) => {
+  await loginAdminType(req, res, "pathologist");
 });
 
 router.post("/register/doctor", async (req, res) => {
