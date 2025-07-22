@@ -28,6 +28,10 @@ import PharmacistDashboard from "./pages/NewAdmins/PharmacistDashboard";
 import PharmacistPrescriptions from "./pages/NewAdmins/PharmacistPrescriptions";
 import PharmacistPrescriptionDetails from "./pages/NewAdmins/PharmacistPrescriptionDetails";
 import PharmacistPatient from "./pages/NewAdmins/PharmacistPatient";
+import PathologistDashboard from "./pages/NewAdmins/PathologistDashboard";
+import PathologistPrescriptions from "./pages/NewAdmins/PathologistPrescriptions";
+import PathologistPrescriptionDetails from "./pages/NewAdmins/PathologistPrescriptionDetails";
+import PathologistPatient from "./pages/NewAdmins/PathologistPatient";
 function App() {
   return (
     <Router>
@@ -46,14 +50,31 @@ function App() {
           element={<AdminPrescriptionDetails />}
         />
         <Route path="/pharmacist/patient/:id" element={<PharmacistPatient />} />
+        <Route
+          path="/pathologist/patient/:id"
+          element={<PathologistPatient />}
+        />
+
         <Route path="/pharmacist/dashboard" element={<PharmacistDashboard />} />
+        <Route
+          path="/pathologist/dashboard"
+          element={<PathologistDashboard />}
+        />
         <Route
           path="/pharmacist/prescriptions"
           element={<PharmacistPrescriptions />}
         />
         <Route
+          path="/pathologist/prescriptions"
+          element={<PathologistPrescriptions />}
+        />
+        <Route
           path="/pharmacist/prescriptions/:id"
           element={<PharmacistPrescriptionDetails />}
+        />
+        <Route
+          path="/pathologist/prescriptions/:id"
+          element={<PathologistPrescriptionDetails />}
         />
 
         <Route

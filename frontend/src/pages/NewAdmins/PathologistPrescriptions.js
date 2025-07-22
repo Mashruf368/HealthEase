@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const PharmacistPrescriptions = () => {
+const PathologistPrescriptions = () => {
   const [prescriptions, setPrescriptions] = useState([]);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const PharmacistPrescriptions = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          "http://localhost:3001/pharmacist/prescriptions",
+          "http://localhost:3001/pathologist/prescriptions",
           {
             headers: {
               "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const PharmacistPrescriptions = () => {
   }, []);
 
   const handleView = (consultationId) => {
-    navigate(`/pharmacist/prescriptions/${consultationId}`);
+    navigate(`/pathologist/prescriptions/${consultationId}`);
   };
 
   return (
@@ -81,4 +81,4 @@ const PharmacistPrescriptions = () => {
   );
 };
 
-export default PharmacistPrescriptions;
+export default PathologistPrescriptions;

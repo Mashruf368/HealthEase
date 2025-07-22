@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const PharmacistDashboard = () => {
+const PathologistDashboard = () => {
   const navigate = useNavigate();
   const [patientId, setPatientId] = useState("");
 
   const handleViewPrescriptions = () => {
-    navigate("/pharmacist/prescriptions");
-  };
-
-  const handleGoToPharmacy = () => {
-    navigate("/pharmacist/pharmacy");
+    navigate("/pathologist/prescriptions");
   };
 
   const handleUpdateBalance = () => {
@@ -18,23 +14,23 @@ const PharmacistDashboard = () => {
       alert("Please enter a patient ID");
       return;
     }
-    navigate(`/pharmacist/patient/${patientId}`);
+    navigate(`/pathologist/patient/${patientId}`);
   };
 
   return (
-    <div className="pharmacist-dashboard">
+    <div className="pathologist-dashboard">
       <header className="dashboard-header">
         <div className="header-content">
           <div className="logo">
             <h1>HealthEase</h1>
-            <span className="logo-subtitle">Pharmacist Portal</span>
+            <span className="logo-subtitle">Pathologist Portal</span>
           </div>
         </div>
       </header>
 
       <main className="dashboard-main">
         <div className="welcome-section">
-          <h2>Welcome to the Pharmacist Dashboard</h2>
+          <h2>Welcome to the Pathologist Dashboard</h2>
           <p>Access and manage prescriptions</p>
         </div>
 
@@ -43,21 +39,10 @@ const PharmacistDashboard = () => {
             onClick={handleViewPrescriptions}
             className="action-btn prescriptions-btn"
           >
-            <div className="btn-icon">💊</div>
+            <div className="btn-icon">🧪</div>
             <div className="btn-content">
               <h3>View Prescriptions</h3>
               <p>List of all prescriptions</p>
-            </div>
-          </button>
-
-          <button
-            onClick={handleGoToPharmacy}
-            className="action-btn pharmacy-btn"
-          >
-            <div className="btn-icon">🏥</div>
-            <div className="btn-content">
-              <h3>Go to Pharmacy</h3>
-              <p>Manage medicine inventory</p>
             </div>
           </button>
 
@@ -87,4 +72,4 @@ const PharmacistDashboard = () => {
   );
 };
 
-export default PharmacistDashboard;
+export default PathologistDashboard;
