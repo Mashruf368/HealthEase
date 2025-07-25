@@ -6,9 +6,10 @@ router.get("/profile/prescriptions/:id", authorization, async (req, res) => {
   try {
     const userid = req.user;
     const pid = req.params.id;
+    console.log("in prescription view");
     const detailsResult = await pool.query(
       `
-        select a1.details,d1.name,p1.symptoms,p1.comments
+        select a1.details,d1.name as doctor_name,p1.symptoms,p1.comments
         from prescription p1,patient p2,doctor d1,appointment a1
         where p1.patient_id = p2.patient_id
         and p1.doctor_id = d1.doctor_id

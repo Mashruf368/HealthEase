@@ -18,7 +18,7 @@ import PrivateRouteDoctor from "./component/privateroutedoctor";
 import DoctorAppointment from "./pages/appointmentdoctor";
 import Profile from "./pages/Patient/profile";
 import WritePrescription from "./pages/Prescription/prescription";
-import Patviewpresc from "./pages/Patient/PrescriptionDetails";
+//import Patviewpresc from "./pages/Patient/PrescriptionDetails";
 import DoctorSchedulePage from "./pages/DoctorSchedulePage";
 import AdminPrescriptions from "./pages/admin/adminprescription";
 import AdminPrescriptionDetails from "./pages/admin/adminprescriptiondetails";
@@ -32,6 +32,10 @@ import PathologistDashboard from "./pages/NewAdmins/PathologistDashboard";
 import PathologistPrescriptions from "./pages/NewAdmins/PathologistPrescriptions";
 import PathologistPrescriptionDetails from "./pages/NewAdmins/PathologistPrescriptionDetails";
 import PathologistPatient from "./pages/NewAdmins/PathologistPatient";
+//import PatientPrescriptionDetails from "./pages/Patient/PatientPrescriptionDetails";
+
+//import PatientPrescriptionDetails from "./pages/Patient/PatientPrescriptionDetails";
+import PatientPrescriptionDetails from "./pages/Patient/PatientPrescriptionDetials";
 function App() {
   return (
     <Router>
@@ -161,13 +165,10 @@ function App() {
             </PrivateRouteDoctor>
           }
         />
+        {/* <Route path="/prescription/:id" element={<Patviewpresc />} /> */}
         <Route
-          path="/prescription/:id"
-          element={
-            <PrivateRoute>
-              <Patviewpresc />
-            </PrivateRoute>
-          }
+          path="/prescription/abc/:id"
+          element={<PatientPrescriptionDetails />}
         />
       </Routes>
     </Router>
