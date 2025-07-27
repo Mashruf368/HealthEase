@@ -1,0 +1,207 @@
+
+CREATE TYPE gender AS ENUM ('M', 'F');
+CREATE TYPE role AS ENUM ('DOC', 'PAT', 'ADM');
+CREATE TYPE appointment_status AS ENUM ('P', 'A', 'C');
+
+
+CREATE TABLE Accounts (
+    User_ID INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    Username VARCHAR(100),
+    Password VARCHAR(100),
+    Role role
+);
+
+CREATE TABLE Branch (
+    Branch_ID INTEGER PRIMARY KEY,
+    Name VARCHAR(100),
+    Address VARCHAR(255),
+    Contact_Info INTEGER
+);
+
+CREATE TABLE Admin (
+    Admin_ID INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    Name VARCHAR(100),
+    Branch_ID INTEGER,
+    FOREIGN KEY (Branch_ID) REFERENCES Branch(Branch_ID)	
+);
+
+CREATE TABLE Patient (
+    Patient_ID INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Address VARCHAR(255),
+    Gender gender,
+    Age INTEGER NOT NULL
+);
+
+CREATE TABLE Doctor (
+    Doctor_ID INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    Name VARCHAR(100),
+    Age INTEGER,
+    Gender gender,
+    Contacts VARCHAR(100),
+    Speciality VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Degree (
+    Degree_ID INTEGER PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+
+
+CREATE TABLE Doctor_Degree (
+    Degree_ID INTEGER,
+    Doctor_ID INTEGER,
+    Institute VARCHAR(100),
+    Year_of_Passing INTEGER,
+    PRIMARY KEY (Degree_ID, Doctor_ID),
+    FOREIGN KEY (Degree_ID) REFERENCES Degree(Degree_ID),
+    FOREIGN KEY (Doctor_ID) REFERENCES Doctor(Doctor_ID)
+);
+
+CREATE TABLE Appointment (
+    Appointment_ID INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    Patient_ID INTEGER,
+    Doctor_ID INTEGER,
+    Scheduled_Time TIME,
+    Date DATE,
+    Status appointment_status,
+    Created_at DATE,
+    Branch_ID INTEGER,
+    FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID),
+    FOREIGN KEY (Doctor_ID) REFERENCES Doctor(Doctor_ID),
+    FOREIGN KEY (Branch_ID) REFERENCES Branch(Branch_ID)
+);
+
+CREATE TABLE Consultation_History (
+    Consultation_ID INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    Patient_ID INTEGER,
+    Consulted_Physician INTEGER,
+    Date DATE,
+    FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID),
+    FOREIGN KEY (Consulted_Physician) REFERENCES Doctor(Doctor_ID)
+);
+
+CREATE TABLE Patient_History (
+    Patient_ID INTEGER PRIMARY KEY,
+    Heart_Rate INTEGER,
+    Blood_Pressure INTEGER,
+    Diabetes NUMERIC(5,2),
+    Cholesterol NUMERIC(5,2),
+    BMI NUMERIC(5,2),
+    Height NUMERIC(5,2),
+    Weight INTEGER,
+    Last_Updated DATE,
+    FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID)
+);
+
+CREATE TABLE Payment (
+    Patient_ID INTEGER PRIMARY KEY,
+    Name VARCHAR(100),
+    Meds_Cost INTEGER,
+    Test_Cost INTEGER,
+    Surgery_Cost INTEGER,
+    Cabin_Cost INTEGER,
+    Paid INTEGER,
+    Account_Balance INTEGER,
+    FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID)
+);
+
+CREATE TABLE Prescription (
+    Consultation_ID INTEGER PRIMARY KEY,
+    Patient_ID INTEGER,
+    Physician_ID INTEGER,
+    Symptoms VARCHAR(255),
+    Date DATE,
+    Comments VARCHAR(255),
+    FOREIGN KEY (Consultation_ID) REFERENCES Consultation_History(Consultation_ID),
+    FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID),
+    FOREIGN KEY (Physician_ID) REFERENCES Doctor(Doctor_ID)
+);
+
+CREATE TABLE Medicine (
+    Medicine_ID INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    Name VARCHAR(100),
+    Dosage VARCHAR(50),
+    Cost INTEGER
+);
+
+CREATE TABLE Prescribed_Meds (
+    Medicine_ID INTEGER,
+    Dosage VARCHAR(50),
+    Consultation_ID INTEGER,
+    FOREIGN KEY (Medicine_ID) REFERENCES Medicine(Medicine_ID),
+    FOREIGN KEY (Consultation_ID) REFERENCES Consultation_History(Consultation_ID)
+);
+
+CREATE TABLE Tests (
+    Test_ID INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    Cost INTEGER
+);
+
+CREATE TABLE Recommended_Tests (
+    Test_ID INTEGER,
+    Details VARCHAR(255),
+    Consultation_ID INTEGER,
+    Test_Result VARCHAR(255),
+    FOREIGN KEY (Test_ID) REFERENCES Tests(Test_ID),
+    FOREIGN KEY (Consultation_ID) REFERENCES Consultation_History(Consultation_ID)
+);
+
+CREATE TABLE Surgery (
+    Surgery_ID INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    Name VARCHAR(100),
+    Cost INTEGER
+);
+
+CREATE TABLE Suggested_Surgeries (
+    Surgery_ID INTEGER,
+    Consultation_ID INTEGER,
+    Surgery_Result VARCHAR(255),
+    FOREIGN KEY (Surgery_ID) REFERENCES Surgery(Surgery_ID),
+    FOREIGN KEY (Consultation_ID) REFERENCES Consultation_History(Consultation_ID)
+);
+
+CREATE TABLE Shift (
+    Shift_No INTEGER PRIMARY KEY,
+    Name VARCHAR(100),
+    Start_Time DATE NOT NULL,
+    End_Time DATE NOT NULL
+);
+
+CREATE TABLE Doctor_Schedule (
+    Doctor_ID INTEGER ,
+    Branch_ID INTEGER,
+    Shift_No INTEGER,
+    Day_of_week VARCHAR(20),
+    PRIMARY KEY (Doctor_ID, Branch_ID, Shift_No,Day_of_week),
+    FOREIGN KEY (Doctor_ID) REFERENCES Doctor(Doctor_ID),
+    FOREIGN KEY (Branch_ID) REFERENCES Branch(Branch_ID),
+    FOREIGN KEY (Shift_No) REFERENCES Shift(Shift_No)
+);
+
+CREATE TABLE Cabins (
+    Branch_ID INTEGER,
+    Cabin_No INTEGER,
+    No_of_Beds INTEGER,
+    Ward VARCHAR(100),
+    Cabin_Type VARCHAR(100),
+    Cost INTEGER,
+    PRIMARY KEY (Branch_ID, Cabin_No),
+    FOREIGN KEY (Branch_ID) REFERENCES Branch(Branch_ID)
+);
+
+CREATE TABLE Admitted_Patients (
+    Patient_ID INTEGER,
+    Branch_ID INTEGER,
+    Cabin_No INTEGER,
+    Bed_No INTEGER,
+    Consultation_ID INTEGER,
+    Supervising_Doctor INTEGER,
+    Date_of_admission DATE,
+    Date_of_release DATE,
+    FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID),
+    FOREIGN KEY (Branch_ID, Cabin_No) REFERENCES Cabins(Branch_ID, Cabin_No),
+    FOREIGN KEY (Consultation_ID) REFERENCES Consultation_History(Consultation_ID),
+    FOREIGN KEY (Supervising_Doctor) REFERENCES Doctor(Doctor_ID)
+);

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Premier League Teams</title>
+  </head>
+  <body>
+    <h1>Premier League - Team Goals</h1>
+
+    <button onclick="fetchTeams()">Load Teams</button>
+    <ul id="teamList"></ul>
+
+    <h3>Update Goals</h3>
+    <input type="text" id="updateTeam" placeholder="Team Name" />
+    <input type="number" id="updateGoals" placeholder="New Goals" />
+    <button onclick="updateGoals()">Update</button>
+
+    <h3>Delete Team</h3>
+    <input type="text" id="deleteTeam" placeholder="Team Name" />
+    <button onclick="deleteTeam()">Delete</button>
+
+    <script>
+      async function fetchTeams() {
+        const res = await fetch("/teams");
+        const data = await res.json();
+        const list = document.getElementById("teamList");
+        list.innerHTML = "";
+        data.forEach((row) => {
+          const item = document.createElement("li");
+          item.textContent = `${row.team} - ${row.goals} goals`;
+          list.appendChild(item);
+        });
+      }
+
+      async function updateGoals() {
+        const team = document.getElementById("updateTeam").value;
+        const goals = document.getElementById("updateGoals").value;
+        const res = await fetch("/update", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ team, goals }),
+        });
+        const data = await res.json();
+        alert(`Updated: ${data.team} - ${data.goals} goals`);
+        fetchTeams();
+      }
+
+      async function deleteTeam() {
+        const team = document.getElementById("deleteTeam").value;
+        const res = await fetch("/delete", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ team }),
+        });
+        const data = await res.json();
+        alert(`Deleted: ${data.team}`);
+        fetchTeams();
+      }
+    </script>
+  </body>
+</html>
