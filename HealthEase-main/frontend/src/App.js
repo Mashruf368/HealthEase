@@ -37,6 +37,7 @@ import PathologistPatient from "./pages/NewAdmins/PathologistPatient";
 //import PatientPrescriptionDetails from "./pages/Patient/PatientPrescriptionDetails";
 import PatientPrescriptionDetails from "./pages/Patient/PatientPrescriptionDetials";
 import SignInDoctor from "./pages/SigninDoctor";
+import AdminPatientProfile from "./pages/admin/adminpatient";
 function App() {
   return (
     <Router>
@@ -51,6 +52,7 @@ function App() {
         <Route path="/admin/signin" element={<AdminSignIn />} />
         <Route path="/admin/pending" element={<AdminPending />} />
         <Route path="/signin/doctor" element={<SignInDoctor />} />
+        <Route path="/admin/patient/:id" element={<AdminPatientProfile />} />
         <Route
           path="/admin/prescription/:id"
           element={<AdminPrescriptionDetails />}
