@@ -509,7 +509,7 @@ const WritePrescription = () => {
                 <td>
                   <button
                     onClick={() =>
-                      navigate(`/prescription/abc/${pres.consultation_id}`)
+                      navigate(`/admin/prescription/${pres.consultation_id}`)
                     }
                     style={{
                       padding: "0.5rem 1rem",
