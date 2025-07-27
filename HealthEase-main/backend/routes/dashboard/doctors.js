@@ -3,42 +3,9 @@ const pool = require("../../db");
 const authorization = require("../../middleware/authorization");
 const router = express.Router();
 //get all doctor info in find doctor page
-router.post("/doctors", authorization, async (req, res) => {
-  try {
-    const result = await pool.query(`
-      SELECT 
-        d.doctor_id,
-        d.name,
-        d.age,
-        d.gender,
-        d.contacts,
-        d.details,
-        d.speciality,
-        json_agg(json_build_object(
-          'degree_name', deg.name,
-          'institute', dd.institute,
-          'year', dd.year_of_passing
-        )) AS degrees
-      FROM doctor d
-      LEFT JOIN doctor_degree dd ON d.doctor_id = dd.doctor_id
-      LEFT JOIN degree deg ON dd.degree_id = deg.degree_id
-      GROUP BY d.doctor_id, d.name, d.age, d.gender, d.contacts, d.details, d.speciality
-      ORDER BY d.name
-    `);
-
-    res.status(200).json(result.rows);
-  } catch (err) {
-    console.error("Error fetching doctors:", err);
-    res.status(500).json({ error: "Server error while fetching doctors" });
-  }
-});
-//get this doctor info in make appointment page
-// router.get("/doctors/:id", authorization, async (req, res) => {
-//   const doctorId = req.params.id;
-
+// router.post("/doctors", authorization, async (req, res) => {
 //   try {
-//     const doctorResult = await pool.query(
-//       `
+//     const result = await pool.query(`
 //       SELECT
 //         d.doctor_id,
 //         d.name,
@@ -51,38 +18,57 @@ router.post("/doctors", authorization, async (req, res) => {
 //           'degree_name', deg.name,
 //           'institute', dd.institute,
 //           'year', dd.year_of_passing
-//         ) ORDER BY dd.year_of_passing DESC) AS degrees
+//         )) AS degrees
 //       FROM doctor d
 //       LEFT JOIN doctor_degree dd ON d.doctor_id = dd.doctor_id
 //       LEFT JOIN degree deg ON dd.degree_id = deg.degree_id
-//       WHERE d.doctor_id = $1
-//       GROUP BY d.doctor_id
-//     `,
-//       [doctorId]
-//     );
+//       GROUP BY d.doctor_id, d.name, d.age, d.gender, d.contacts, d.details, d.speciality
+//       ORDER BY d.name
+//     `);
 
-//     const scheduleResult = await pool.query(
-//       `
-//       SELECT
-//         branch_id,
-//         shift_no,
-//         day_of_week
-//       FROM doctor_schedule
-//       WHERE doctor_id = $1
-//       ORDER BY day_of_week
-//     `,
-//       [doctorId]
-//     );
-
-//     res.status(200).json({
-//       doctor: doctorResult.rows[0],
-//       schedule: scheduleResult.rows,
-//     });
+//     res.status(200).json(result.rows);
 //   } catch (err) {
-//     console.error("Error fetching doctor info:", err);
-//     res.status(500).json({ error: "Server error while fetching doctor info" });
+//     console.error("Error fetching doctors:", err);
+//     res.status(500).json({ error: "Server error while fetching doctors" });
 //   }
 // });
+
+router.post("/doctors", authorization, async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT 
+        d.doctor_id,
+        d.name,
+        d.age,
+        d.gender,
+        d.contacts,
+        d.details,
+        d.speciality,
+        json_agg(DISTINCT jsonb_build_object(
+          'degree_name', deg.name,
+          'institute', dd.institute,
+          'year', dd.year_of_passing
+        )) AS degrees,
+        json_agg(DISTINCT jsonb_build_object(
+          'branch_id', b.branch_id,
+          'branch_name', b.name
+        )) AS branches
+      FROM doctor d
+      LEFT JOIN doctor_degree dd ON d.doctor_id = dd.doctor_id
+      LEFT JOIN degree deg ON dd.degree_id = deg.degree_id
+      LEFT JOIN doctor_schedule ds ON d.doctor_id = ds.doctor_id
+      LEFT JOIN branch b ON ds.branch_id = b.branch_id
+      GROUP BY d.doctor_id, d.name, d.age, d.gender, d.contacts, d.details, d.speciality
+      ORDER BY d.name
+    `);
+
+    res.status(200).json(result.rows);
+  } catch (err) {
+    console.error("Error fetching doctors:", err);
+    res.status(500).json({ error: "Server error while fetching doctors" });
+  }
+});
+
 router.get("/doctors/:id", authorization, async (req, res) => {
   const doctorId = req.params.id;
 

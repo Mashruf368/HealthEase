@@ -28,7 +28,7 @@ router.get("/admin/prescriptions", authorizeadmin, async (req, res) => {
     const offset = (page - 1) * limit;
 
     const prescriptionsQuery = `
-      SELECT pp.name AS patient_name, dd.name AS doctor_name, a.appointment_id, p.consultation_id
+      SELECT pp.patient_id,pp.name AS patient_name, dd.name AS doctor_name, a.appointment_id, p.consultation_id
       FROM prescription p
       JOIN appointment a ON p.appointment_id = a.appointment_id
       JOIN patient pp ON pp.patient_id = p.patient_id
