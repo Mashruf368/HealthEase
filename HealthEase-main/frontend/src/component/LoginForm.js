@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-//import "../styles/LoginForm.css"; // Ensure your CSS file is correctly imported
+import "../styles/LoginForm.css"; // Ensure your CSS file is correctly imported
 
 const LoginForm = ({ endpoint, redirectPath, showRoleButtons = false }) => {
   const [formData, setFormData] = useState({ username: "", password: "" });

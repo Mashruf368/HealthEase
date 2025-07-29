@@ -1,22 +1,18 @@
-* {
-  box-sizing: border-box;
-}
-
-.admin-dashboard {
+.admin-dashboard-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: linear-gradient(135deg, #dbefff 0%, #b3cde0 100%);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Header Styles */
-.dashboard-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+/* Header */
+.admin-dashboard-header {
+  background: linear-gradient(135deg, #4568dc, #b06ab3);
   color: white;
   padding: 1rem 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.header-content {
+.admin-header-content {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -25,23 +21,22 @@
   align-items: center;
 }
 
-.logo h1 {
+.admin-logo h1 {
   margin: 0;
   font-size: 2rem;
   font-weight: 700;
-  letter-spacing: -0.5px;
 }
 
-.logo-subtitle {
+.admin-subtitle {
   font-size: 0.9rem;
   opacity: 0.8;
   font-weight: 300;
 }
 
-.logout-btn {
+.admin-logout-btn {
   background: rgba(255, 255, 255, 0.2);
   color: white;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid white;
   padding: 0.5rem 1.5rem;
   border-radius: 25px;
   cursor: pointer;
@@ -50,251 +45,179 @@
   backdrop-filter: blur(10px);
 }
 
-.logout-btn:hover {
+.admin-logout-btn:hover {
   background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-2px);
 }
 
-/* Main Content */
-.dashboard-main {
+/* Main Section */
+.admin-dashboard-main {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-.welcome-section {
+.admin-welcome {
   text-align: center;
   margin-bottom: 3rem;
 }
 
-.welcome-section h2 {
+.admin-welcome h2 {
   font-size: 2.5rem;
   color: #2c3e50;
-  margin-bottom: 0.5rem;
-  font-weight: 300;
+  font-weight: 400;
 }
 
-.welcome-section p {
-  color: #7f8c8d;
-  font-size: 1.1rem;
-  margin: 0;
+.admin-welcome p {
+  color: #555;
 }
 
-/* Error Message */
-.error-message {
-  background: #fee;
-  border: 1px solid #fcc;
+/* Error */
+.admin-error-message {
+  background: #ffe5e5;
+  border: 1px solid #ffb3b3;
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 2rem;
   text-align: center;
 }
 
-.error-message p {
-  color: #c33;
-  margin: 0;
-  font-weight: 500;
+.admin-error-message p {
+  color: #c0392b;
 }
 
-/* Action Buttons */
-.action-buttons {
+/* Buttons */
+.admin-action-buttons {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-bottom: 3rem;
 }
 
-.action-btn {
+.admin-btn {
   background: white;
   border: none;
   border-radius: 12px;
-  padding: 2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
   display: flex;
   align-items: center;
-  text-align: left;
-  min-height: 120px;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
-.action-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.appointments-btn:hover {
-  background: linear-gradient(135deg, #3498db, #2980b9);
-  color: white;
-}
-
-.prescriptions-btn:hover {
-  background: linear-gradient(135deg, #27ae60, #229954);
-  color: white;
-}
-
-.btn-icon {
-  font-size: 2.5rem;
+.admin-btn-icon {
+  font-size: 2.2rem;
   margin-right: 1.5rem;
-  min-width: 60px;
 }
 
-.btn-content h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #2c3e50;
-}
-
-.action-btn:hover .btn-content h3 {
-  color: white;
-}
-
-.btn-content p {
+.admin-btn-text h3 {
   margin: 0;
-  color: #7f8c8d;
+  color: #2c3e50;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.admin-btn-text p {
+  margin: 0.3rem 0 0 0;
+  color: #666;
   font-size: 0.9rem;
 }
 
-.action-btn:hover .btn-content p {
-  color: rgba(255, 255, 255, 0.9);
+.admin-appointments-btn:hover {
+  background: linear-gradient(135deg, #2980b9, #3498db);
+  color: white;
 }
 
-/* Statistics Section */
-.stats-section {
+.admin-prescriptions-btn:hover {
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  color: white;
+}
+
+.admin-pending-btn:hover {
+  background: linear-gradient(135deg, #8e44ad, #9b59b6);
+  color: white;
+}
+
+.admin-btn:hover .admin-btn-text h3,
+.admin-btn:hover .admin-btn-text p {
+  color: white;
+}
+
+/* Stats */
+.admin-stats-section {
   background: white;
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.stats-section h3 {
+.admin-stats-section h3 {
   text-align: center;
-  color: #2c3e50;
   margin-bottom: 2rem;
-  font-size: 1.5rem;
+  color: #2c3e50;
   font-weight: 600;
 }
 
-.stats-grid {
+.admin-stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
 }
 
-.stat-card {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-radius: 10px;
+.admin-stat-card {
+  background: #ecf3ff;
+  border-radius: 12px;
   padding: 1.5rem;
   display: flex;
   align-items: center;
-  transition: all 0.3s ease;
-  border-left: 4px solid transparent;
+  transition: 0.3s ease;
 }
 
-.stat-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.today-appointments {
-  border-left-color: #3498db;
-}
-
-.today-appointments:hover {
-  background: linear-gradient(135deg, #3498db, #2980b9);
-  color: white;
-}
-
-.total-appointments {
-  border-left-color: #27ae60;
-}
-
-.total-appointments:hover {
-  background: linear-gradient(135deg, #27ae60, #229954);
-  color: white;
-}
-
-.stat-icon {
+.admin-stat-icon {
   font-size: 2rem;
   margin-right: 1rem;
-  min-width: 50px;
 }
 
-.stat-content h4 {
-  margin: 0 0 0.5rem 0;
+.admin-stat-text h4 {
+  margin: 0;
   font-size: 1rem;
-  font-weight: 600;
-  color: #2c3e50;
-}
-
-.stat-card:hover .stat-content h4 {
-  color: white;
-}
-
-.stat-number {
-  font-size: 2rem;
-  font-weight: 700;
   color: #34495e;
 }
 
-.stat-card:hover .stat-number {
-  color: white;
+.admin-stat-text span {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c3e50;
 }
 
-/* Responsive Design */
+.admin-stat-blue {
+  border-left: 5px solid #2980b9;
+}
+
+.admin-stat-green {
+  border-left: 5px solid #27ae60;
+}
+
+.admin-stat-blue:hover,
+.admin-stat-green:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .header-content {
-    padding: 0 1rem;
-  }
-
-  .logo h1 {
-    font-size: 1.5rem;
-  }
-
-  .dashboard-main {
-    padding: 1rem;
-  }
-
-  .welcome-section h2 {
-    font-size: 2rem;
-  }
-
-  .action-buttons {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .action-btn {
-    padding: 1.5rem;
-    min-height: 100px;
-  }
-
-  .btn-icon {
-    font-size: 2rem;
-    margin-right: 1rem;
-  }
-
-  .stats-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-content {
+  .admin-header-content {
     flex-direction: column;
     gap: 1rem;
   }
 
-  .action-btn {
+  .admin-btn {
     flex-direction: column;
     text-align: center;
   }
 
-  .btn-icon {
-    margin-right: 0;
-    margin-bottom: 0.5rem;
+  .admin-btn-icon {
+    margin: 0 0 1rem 0;
   }
 }

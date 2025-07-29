@@ -1,0 +1,111 @@
+/* Unique styles for Login page only */
+.login-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+}
+
+.login-page-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.login-page-title {
+  color: #5b21b6;
+  text-align: center;
+  margin-bottom: 1.75rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.login-page-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.login-page-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.login-page-input {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.login-page-input:focus {
+  border-color: #7c3aed;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.login-page-submit {
+  background-color: #7c3aed;
+  color: white;
+  border: none;
+  padding: 0.875rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.login-page-submit:hover {
+  background-color: #6d28d9;
+  transform: translateY(-2px);
+}
+
+.login-page-error {
+  color: #dc2626;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+}
+
+.login-page-role-section {
+  margin-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+}
+
+.login-page-role-title {
+  text-align: center;
+  color: #4b5563;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.login-page-role-btn {
+  width: 100%;
+  background-color: #8b5cf6;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0.75rem;
+}
+
+.login-page-role-btn:hover {
+  background-color: #7c3aed;
+  transform: translateY(-2px);
+}

@@ -1,0 +1,96 @@
+/* Unique styles for Admin Login page only */
+.login-admin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+}
+
+.login-admin-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.login-admin-title {
+  color: #5b21b6;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.login-admin-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.login-admin-input:focus {
+  border-color: #7c3aed;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.login-admin-btn-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.login-admin-btn {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-admin-btn-primary {
+  background-color: #7c3aed;
+  color: white;
+}
+
+.login-admin-btn-primary:hover {
+  background-color: #6d28d9;
+  transform: translateY(-2px);
+}
+
+.login-admin-btn-secondary {
+  background-color: #8b5cf6;
+  color: white;
+}
+
+.login-admin-btn-secondary:hover {
+  background-color: #7c3aed;
+  transform: translateY(-2px);
+}
+
+.login-admin-btn-tertiary {
+  background-color: #a78bfa;
+  color: white;
+}
+
+.login-admin-btn-tertiary:hover {
+  background-color: #8b5cf6;
+  transform: translateY(-2px);
+}
+
+.login-admin-message {
+  color: #dc2626;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+}
