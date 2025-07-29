@@ -1,7 +1,4 @@
-/* Scoped styles for AdminPrescriptions component only */
-
-/* Remove global box-sizing - apply only within admin-prescriptions */
-.admin-prescriptions * {
+* {
   box-sizing: border-box;
 }
 
@@ -11,8 +8,8 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Header Styles - FIXED with admin prefix */
-.admin-prescriptions .admin-prescriptions-header {
+/* Header Styles - FIXED */
+.prescriptions-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
   color: white !important;
   padding: 1rem 0;
@@ -21,7 +18,7 @@
   z-index: 10;
 }
 
-.admin-prescriptions .admin-header-content {
+.header-content {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -30,7 +27,7 @@
   align-items: center;
 }
 
-.admin-prescriptions .admin-logo h1 {
+.logo h1 {
   margin: 0;
   font-size: 2rem;
   font-weight: 700;
@@ -39,7 +36,7 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.admin-prescriptions .admin-logo-subtitle {
+.logo-subtitle {
   font-size: 0.9rem;
   opacity: 0.9;
   font-weight: 300;
@@ -48,14 +45,14 @@
   margin-top: 2px;
 }
 
-.admin-prescriptions .admin-header-actions {
+.header-actions {
   display: flex;
   gap: 1rem;
   align-items: center;
 }
 
-.admin-prescriptions .admin-back-btn,
-.admin-prescriptions .admin-logout-btn {
+.back-btn,
+.logout-btn {
   background: rgba(255, 255, 255, 0.2) !important;
   color: white !important;
   border: 2px solid rgba(255, 255, 255, 0.3) !important;
@@ -69,8 +66,8 @@
   font-family: inherit;
 }
 
-.admin-prescriptions .admin-back-btn:hover,
-.admin-prescriptions .admin-logout-btn:hover {
+.back-btn:hover,
+.logout-btn:hover {
   background: rgba(255, 255, 255, 0.3) !important;
   border-color: rgba(255, 255, 255, 0.5) !important;
   transform: translateY(-2px);
@@ -78,32 +75,32 @@
 }
 
 /* Main Content */
-.admin-prescriptions .admin-prescriptions-main {
+.prescriptions-main {
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-.admin-prescriptions .admin-page-header {
+.page-header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.admin-prescriptions .admin-page-header h2 {
+.page-header h2 {
   font-size: 2.5rem;
   color: #2c3e50;
   margin-bottom: 0.5rem;
   font-weight: 300;
 }
 
-.admin-prescriptions .admin-page-header p {
+.page-header p {
   color: #7f8c8d;
   font-size: 1.1rem;
   margin: 0;
 }
 
 /* Message Styles */
-.admin-prescriptions .admin-message {
+.message {
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 2rem;
@@ -111,20 +108,20 @@
   font-weight: 500;
 }
 
-.admin-prescriptions .admin-message.success {
+.message.success {
   background: #d4edda;
   color: #155724;
   border: 1px solid #c3e6cb;
 }
 
-.admin-prescriptions .admin-message.error {
+.message.error {
   background: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
 
 /* Loading Styles */
-.admin-prescriptions .admin-loading-container {
+.loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -133,17 +130,17 @@
   color: #2c3e50;
 }
 
-.admin-prescriptions .admin-loading-spinner {
+.loading-spinner {
   width: 40px;
   height: 40px;
   border: 4px solid #e3e3e3;
   border-top: 4px solid #667eea;
   border-radius: 50%;
-  animation: admin-spin 1s linear infinite;
+  animation: spin 1s linear infinite;
   margin-bottom: 1rem;
 }
 
-@keyframes admin-spin {
+@keyframes spin {
   0% {
     transform: rotate(0deg);
   }
@@ -153,7 +150,7 @@
 }
 
 /* Prescriptions Container */
-.admin-prescriptions .admin-prescriptions-container {
+.prescriptions-container {
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -161,42 +158,42 @@
 }
 
 /* No Prescriptions State */
-.admin-prescriptions .admin-no-prescriptions {
+.no-prescriptions {
   text-align: center;
   padding: 4rem 2rem;
   color: #7f8c8d;
 }
 
-.admin-prescriptions .admin-no-prescriptions-icon {
+.no-prescriptions-icon {
   font-size: 4rem;
   margin-bottom: 1rem;
   opacity: 0.5;
 }
 
-.admin-prescriptions .admin-no-prescriptions h3 {
+.no-prescriptions h3 {
   color: #2c3e50;
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
   font-weight: 600;
 }
 
-.admin-prescriptions .admin-no-prescriptions p {
+.no-prescriptions p {
   margin: 0;
   font-size: 1rem;
 }
 
 /* Table Styles */
-.admin-prescriptions .admin-table-container {
+.table-container {
   overflow-x: auto;
 }
 
-.admin-prescriptions .admin-prescriptions-table {
+.prescriptions-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.9rem;
 }
 
-.admin-prescriptions .admin-prescriptions-table th {
+.prescriptions-table th {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   padding: 1rem;
   text-align: left;
@@ -206,38 +203,38 @@
   white-space: nowrap;
 }
 
-.admin-prescriptions .admin-prescriptions-table td {
+.prescriptions-table td {
   padding: 1rem;
   border-bottom: 1px solid #f1f3f4;
   vertical-align: top;
 }
 
-.admin-prescriptions .admin-prescriptions-table tbody tr:hover {
+.prescriptions-table tbody tr:hover {
   background: #f8f9fa;
   transition: background-color 0.3s ease;
 }
 
 /* Table Cell Styles */
-.admin-prescriptions .admin-patient-cell {
+.patient-cell {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.5rem;
 }
 
-.admin-prescriptions .admin-patient-name {
+.patient-name {
   color: #2c3e50;
   font-weight: 500;
   font-size: 0.95rem;
 }
 
-.admin-prescriptions .admin-doctor-name {
+.doctor-name {
   color: #2c3e50;
   font-weight: 500;
 }
 
-.admin-prescriptions .admin-appointment-id,
-.admin-prescriptions .admin-consultation-id {
+.appointment-id,
+.consultation-id {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   padding: 0.25rem 0.5rem;
@@ -247,12 +244,12 @@
   display: inline-block;
 }
 
-.admin-prescriptions .admin-consultation-id {
+.consultation-id {
   background: linear-gradient(135deg, #28a745, #20c997);
 }
 
 /* Action Buttons */
-.admin-prescriptions .admin-action-btn {
+.action-btn {
   background: linear-gradient(135deg, #3498db, #2980b9);
   color: white;
   border: none;
@@ -265,31 +262,31 @@
   white-space: nowrap;
 }
 
-.admin-prescriptions .admin-action-btn:hover {
+.action-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
 }
 
-.admin-prescriptions .admin-profile-btn {
+.profile-btn {
   background: linear-gradient(135deg, #28a745, #20c997);
   padding: 0.3rem 0.6rem;
   font-size: 0.75rem;
 }
 
-.admin-prescriptions .admin-profile-btn:hover {
+.profile-btn:hover {
   box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
 }
 
-.admin-prescriptions .admin-prescription-btn {
+.prescription-btn {
   background: linear-gradient(135deg, #007bff, #0056b3);
 }
 
-.admin-prescriptions .admin-prescription-btn:hover {
+.prescription-btn:hover {
   box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
 
 /* Pagination Styles */
-.admin-prescriptions .admin-pagination-container {
+.pagination-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -299,7 +296,7 @@
   border-top: 1px solid #f1f3f4;
 }
 
-.admin-prescriptions .admin-pagination-btn {
+.pagination-btn {
   background: #f8f9fa;
   color: #495057;
   border: 1px solid #dee2e6;
@@ -311,134 +308,134 @@
   font-size: 0.9rem;
 }
 
-.admin-prescriptions .admin-pagination-btn:hover:not(:disabled) {
+.pagination-btn:hover:not(:disabled) {
   background: #e9ecef;
   border-color: #adb5bd;
   transform: translateY(-1px);
 }
 
-.admin-prescriptions .admin-pagination-btn:disabled {
+.pagination-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   background: #f8f9fa;
 }
 
-.admin-prescriptions .admin-pagination-btn.active {
+.pagination-btn.active {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   border-color: #667eea;
 }
 
-.admin-prescriptions .admin-pagination-btn.active:hover {
+.pagination-btn.active:hover {
   background: linear-gradient(135deg, #5a6fd8, #6a4190);
   transform: translateY(-1px);
 }
 
-.admin-prescriptions .admin-prev-btn,
-.admin-prescriptions .admin-next-btn {
+.prev-btn,
+.next-btn {
   background: linear-gradient(135deg, #3498db, #2980b9);
   color: white;
   border-color: #3498db;
 }
 
-.admin-prescriptions .admin-prev-btn:hover:not(:disabled),
-.admin-prescriptions .admin-next-btn:hover:not(:disabled) {
+.prev-btn:hover:not(:disabled),
+.next-btn:hover:not(:disabled) {
   background: linear-gradient(135deg, #2980b9, #21618c);
   transform: translateY(-1px);
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-  .admin-prescriptions .admin-header-content {
+  .header-content {
     padding: 0 1rem;
   }
 
-  .admin-prescriptions .admin-prescriptions-main {
+  .prescriptions-main {
     padding: 1rem;
   }
 }
 
 @media (max-width: 768px) {
-  .admin-prescriptions .admin-header-actions {
+  .header-actions {
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  .admin-prescriptions .admin-back-btn,
-  .admin-prescriptions .admin-logout-btn {
+  .back-btn,
+  .logout-btn {
     padding: 0.4rem 1rem;
     font-size: 0.9rem;
   }
 
-  .admin-prescriptions .admin-page-header h2 {
+  .page-header h2 {
     font-size: 2rem;
   }
 
-  .admin-prescriptions .admin-prescriptions-table {
+  .prescriptions-table {
     font-size: 0.8rem;
   }
 
-  .admin-prescriptions .admin-prescriptions-table th,
-  .admin-prescriptions .admin-prescriptions-table td {
+  .prescriptions-table th,
+  .prescriptions-table td {
     padding: 0.75rem 0.5rem;
   }
 
-  .admin-prescriptions .admin-patient-cell {
+  .patient-cell {
     gap: 0.25rem;
   }
 
-  .admin-prescriptions .admin-action-btn {
+  .action-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.7rem;
   }
 
-  .admin-prescriptions .admin-profile-btn {
+  .profile-btn {
     padding: 0.25rem 0.5rem;
     font-size: 0.7rem;
   }
 
-  .admin-prescriptions .admin-pagination-container {
+  .pagination-container {
     padding: 1rem;
     flex-wrap: wrap;
     gap: 0.25rem;
   }
 
-  .admin-prescriptions .admin-pagination-btn {
+  .pagination-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
   }
 }
 
 @media (max-width: 480px) {
-  .admin-prescriptions .admin-header-content {
+  .header-content {
     flex-direction: column;
     gap: 1rem;
   }
 
-  .admin-prescriptions .admin-logo h1 {
+  .logo h1 {
     font-size: 1.5rem;
     color: white !important;
   }
 
-  .admin-prescriptions .admin-page-header h2 {
+  .page-header h2 {
     font-size: 1.5rem;
   }
 
-  .admin-prescriptions .admin-prescriptions-table th,
-  .admin-prescriptions .admin-prescriptions-table td {
+  .prescriptions-table th,
+  .prescriptions-table td {
     padding: 0.5rem 0.25rem;
   }
 
-  .admin-prescriptions .admin-patient-cell {
+  .patient-cell {
     align-items: center;
   }
 
-  .admin-prescriptions .admin-action-btn {
+  .action-btn {
     padding: 0.3rem 0.6rem;
     font-size: 0.7rem;
   }
 
-  .admin-prescriptions .admin-pagination-btn {
+  .pagination-btn {
     padding: 0.3rem 0.6rem;
     font-size: 0.75rem;
   }
@@ -446,9 +443,9 @@
 
 /* Print Styles */
 @media print {
-  .admin-prescriptions .admin-prescriptions-header,
-  .admin-prescriptions .admin-pagination-container,
-  .admin-prescriptions .admin-action-btn {
+  .prescriptions-header,
+  .pagination-container,
+  .action-btn {
     display: none;
   }
 
@@ -456,7 +453,7 @@
     background: white;
   }
 
-  .admin-prescriptions .admin-prescriptions-container {
+  .prescriptions-container {
     box-shadow: none;
   }
 }

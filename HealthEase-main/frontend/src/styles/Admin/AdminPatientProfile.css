@@ -2,21 +2,21 @@
   box-sizing: border-box;
 }
 
-.patient-profile-container {
+.admin-patient-profile-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Header Styles */
-.patient-profile-header {
+.admin-patient-profile-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 1rem 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.header-content {
+.admin-patient-header-content {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -25,27 +25,27 @@
   align-items: center;
 }
 
-.logo h1 {
+.admin-patient-logo h1 {
   margin: 0;
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.5px;
 }
 
-.logo-subtitle {
+.admin-patient-logo-subtitle {
   font-size: 0.9rem;
   opacity: 0.8;
   font-weight: 300;
 }
 
-.header-actions {
+.admin-patient-header-actions {
   display: flex;
   gap: 1rem;
   align-items: center;
 }
 
-.back-btn,
-.logout-btn {
+.admin-patient-back-btn,
+.admin-patient-logout-btn {
   background: rgba(255, 255, 255, 0.2);
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.3);
@@ -57,40 +57,40 @@
   backdrop-filter: blur(10px);
 }
 
-.back-btn:hover,
-.logout-btn:hover {
+.admin-patient-back-btn:hover,
+.admin-patient-logout-btn:hover {
   background: rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-2px);
 }
 
 /* Main Content */
-.patient-profile-main {
+.admin-patient-profile-main {
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-.page-header {
+.admin-patient-page-header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.page-header h2 {
+.admin-patient-page-header h2 {
   font-size: 2.5rem;
   color: #2c3e50;
   margin-bottom: 0.5rem;
   font-weight: 300;
 }
 
-.page-header p {
+.admin-patient-page-header p {
   color: #7f8c8d;
   font-size: 1.1rem;
   margin: 0;
 }
 
 /* Error Message Styles */
-.error-message {
+.admin-patient-error-message {
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 2rem;
@@ -102,7 +102,7 @@
 }
 
 /* Patient Info Card */
-.patient-info-card {
+.admin-patient-info-card {
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -110,13 +110,13 @@
   overflow: hidden;
 }
 
-.card-header {
+.admin-patient-card-header {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   padding: 1.5rem;
   border-bottom: 2px solid #dee2e6;
 }
 
-.card-header h3 {
+.admin-patient-card-header h3 {
   margin: 0;
   color: #2c3e50;
   font-size: 1.5rem;
@@ -126,24 +126,24 @@
   gap: 0.5rem;
 }
 
-.patient-icon {
+.admin-patient-icon {
   font-size: 1.5rem;
 }
 
-.patient-info {
+.admin-patient-info {
   padding: 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
-.patient-detail {
+.admin-patient-detail {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.patient-detail-label {
+.admin-patient-detail-label {
   font-weight: 600;
   color: #495057;
   font-size: 0.9rem;
@@ -151,7 +151,7 @@
   letter-spacing: 0.5px;
 }
 
-.patient-detail-value {
+.admin-patient-detail-value {
   color: #2c3e50;
   font-size: 1.1rem;
   font-weight: 500;
@@ -160,20 +160,20 @@
 }
 
 /* Prescriptions Section */
-.prescriptions-section {
+.admin-patient-prescriptions-section {
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
-.prescriptions-header {
+.admin-patient-prescriptions-header {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   padding: 1.5rem;
   border-bottom: 2px solid #dee2e6;
 }
 
-.prescriptions-header h3 {
+.admin-patient-prescriptions-header h3 {
   margin: 0;
   color: #2c3e50;
   font-size: 1.5rem;
@@ -183,47 +183,47 @@
   gap: 0.5rem;
 }
 
-.prescriptions-icon {
+.admin-patient-prescriptions-icon {
   font-size: 1.5rem;
 }
 
 /* No Prescriptions State */
-.no-prescriptions {
+.admin-patient-no-prescriptions {
   text-align: center;
   padding: 4rem 2rem;
   color: #7f8c8d;
 }
 
-.no-prescriptions-icon {
+.admin-patient-no-prescriptions-icon {
   font-size: 4rem;
   margin-bottom: 1rem;
   opacity: 0.5;
 }
 
-.no-prescriptions h4 {
+.admin-patient-no-prescriptions h4 {
   color: #2c3e50;
   margin-bottom: 0.5rem;
   font-size: 1.3rem;
   font-weight: 600;
 }
 
-.no-prescriptions p {
+.admin-patient-no-prescriptions p {
   margin: 0;
   font-size: 1rem;
 }
 
 /* Table Styles */
-.table-container {
+.admin-patient-table-container {
   overflow-x: auto;
 }
 
-.prescription-table {
+.admin-patient-prescription-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.9rem;
 }
 
-.prescription-table th {
+.admin-patient-prescription-table th {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   padding: 1rem;
   text-align: left;
@@ -233,26 +233,26 @@
   white-space: nowrap;
 }
 
-.prescription-table td {
+.admin-patient-prescription-table td {
   padding: 1rem;
   border-bottom: 1px solid #f1f3f4;
   vertical-align: middle;
 }
 
-.prescription-table tbody tr:hover {
+.admin-patient-prescription-table tbody tr:hover {
   background: #f8f9fa;
   transition: background-color 0.3s ease;
 }
 
 /* Doctor Name Styles */
-.doctor-name {
+.admin-patient-doctor-name {
   color: #2c3e50;
   font-weight: 500;
   font-size: 0.95rem;
 }
 
 /* Consultation ID Styles */
-.consultation-id {
+.admin-patient-consultation-id {
   background: linear-gradient(135deg, #28a745, #20c997);
   color: white;
   padding: 0.25rem 0.5rem;
@@ -263,13 +263,27 @@
 }
 
 /* Date Styles */
-.prescription-date {
+.admin-patient-prescription-date {
   color: #495057;
   font-weight: 500;
 }
 
+/* Status Badge */
+.admin-patient-status-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.admin-patient-active {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+}
+
 /* Action Button */
-.view-details-btn {
+.admin-patient-view-details-btn {
   background: linear-gradient(135deg, #007bff, #0056b3);
   color: white;
   border: none;
@@ -282,14 +296,14 @@
   white-space: nowrap;
 }
 
-.view-details-btn:hover {
+.admin-patient-view-details-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
   background: linear-gradient(135deg, #0056b3, #004085);
 }
 
 /* Loading Styles */
-.loading-container {
+.admin-patient-loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -298,17 +312,17 @@
   color: #2c3e50;
 }
 
-.loading-spinner {
+.admin-patient-loading-spinner {
   width: 40px;
   height: 40px;
   border: 4px solid #e3e3e3;
   border-top: 4px solid #667eea;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: admin-patient-spin 1s linear infinite;
   margin-bottom: 1rem;
 }
 
-@keyframes spin {
+@keyframes admin-patient-spin {
   0% {
     transform: rotate(0deg);
   }
@@ -317,92 +331,117 @@
   }
 }
 
+/* No Patient Found */
+.admin-patient-no-patient {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #7f8c8d;
+}
+
+.admin-patient-no-patient-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.admin-patient-no-patient h3 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.admin-patient-no-patient p {
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
-  .header-content {
+  .admin-patient-header-content {
     padding: 0 1rem;
   }
 
-  .patient-profile-main {
+  .admin-patient-profile-main {
     padding: 1rem;
   }
 
-  .patient-info {
+  .admin-patient-info {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1rem;
   }
 }
 
 @media (max-width: 768px) {
-  .header-actions {
+  .admin-patient-header-actions {
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  .back-btn,
-  .logout-btn {
+  .admin-patient-back-btn,
+  .admin-patient-logout-btn {
     padding: 0.4rem 1rem;
     font-size: 0.9rem;
   }
 
-  .page-header h2 {
+  .admin-patient-page-header h2 {
     font-size: 2rem;
   }
 
-  .patient-info {
+  .admin-patient-info {
     grid-template-columns: 1fr;
     padding: 1.5rem;
   }
 
-  .card-header,
-  .prescriptions-header {
+  .admin-patient-card-header,
+  .admin-patient-prescriptions-header {
     padding: 1rem;
   }
 
-  .prescription-table {
+  .admin-patient-prescription-table {
     font-size: 0.8rem;
   }
 
-  .prescription-table th,
-  .prescription-table td {
+  .admin-patient-prescription-table th,
+  .admin-patient-prescription-table td {
     padding: 0.75rem 0.5rem;
   }
 
-  .view-details-btn {
+  .admin-patient-view-details-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.7rem;
   }
 }
 
 @media (max-width: 480px) {
-  .header-content {
+  .admin-patient-header-content {
     flex-direction: column;
     gap: 1rem;
   }
 
-  .logo h1 {
+  .admin-patient-logo h1 {
     font-size: 1.5rem;
   }
 
-  .page-header h2 {
+  .admin-patient-page-header h2 {
     font-size: 1.5rem;
   }
 
-  .patient-info {
+  .admin-patient-info {
     padding: 1rem;
   }
 
-  .card-header h3,
-  .prescriptions-header h3 {
+  .admin-patient-card-header h3,
+  .admin-patient-prescriptions-header h3 {
     font-size: 1.2rem;
   }
 
-  .prescription-table th,
-  .prescription-table td {
+  .admin-patient-prescription-table th,
+  .admin-patient-prescription-table td {
     padding: 0.5rem 0.25rem;
   }
 
-  .view-details-btn {
+  .admin-patient-view-details-btn {
     padding: 0.3rem 0.6rem;
     font-size: 0.7rem;
   }
@@ -410,17 +449,17 @@
 
 /* Print Styles */
 @media print {
-  .patient-profile-header,
-  .view-details-btn {
+  .admin-patient-profile-header,
+  .admin-patient-view-details-btn {
     display: none;
   }
 
-  .patient-profile-container {
+  .admin-patient-profile-container {
     background: white;
   }
 
-  .patient-info-card,
-  .prescriptions-section {
+  .admin-patient-info-card,
+  .admin-patient-prescriptions-section {
     box-shadow: none;
     border: 1px solid #ddd;
   }

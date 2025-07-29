@@ -1,0 +1,576 @@
+/* Scoped styles for PharmacistPrescriptionDetails component only */
+
+/* Remove global box-sizing - apply only within pharmacist-prescription-details */
+.pharmacist-prescription-details * {
+  box-sizing: border-box;
+}
+
+.pharmacist-prescription-details {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header Styles */
+.pharmacist-prescription-details .pharmacist-details-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 1rem 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+}
+
+.pharmacist-prescription-details .pharmacist-header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pharmacist-prescription-details .pharmacist-logo h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: white !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.pharmacist-prescription-details .pharmacist-logo-subtitle {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9) !important;
+  display: block;
+  margin-top: 2px;
+}
+
+.pharmacist-prescription-details .pharmacist-header-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.pharmacist-prescription-details .pharmacist-back-btn,
+.pharmacist-prescription-details .pharmacist-logout-btn {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.pharmacist-prescription-details .pharmacist-back-btn:hover,
+.pharmacist-prescription-details .pharmacist-logout-btn:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transform: translateY(-2px);
+  color: white !important;
+}
+
+/* Main Content */
+.pharmacist-prescription-details .pharmacist-details-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.pharmacist-prescription-details .pharmacist-page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.pharmacist-prescription-details .pharmacist-page-header h2 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+}
+
+.pharmacist-prescription-details .pharmacist-page-header p {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Message Styles */
+.pharmacist-prescription-details .pharmacist-message {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.pharmacist-prescription-details .pharmacist-message.success {
+  background: linear-gradient(135deg, #e8f4fd 0%, #f3e5f5 100%);
+  color: #4a148c;
+  border: 1px solid #9c27b0;
+}
+
+.pharmacist-prescription-details .pharmacist-message.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Success Message */
+.pharmacist-prescription-details .pharmacist-success-message {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Loading Styles */
+.pharmacist-prescription-details .pharmacist-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: #2c3e50;
+}
+
+.pharmacist-prescription-details .loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e3e3e3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: pharmacist-details-spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.pharmacist-prescription-details .pharmacist-loading-text {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin: 0;
+}
+
+@keyframes pharmacist-details-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Prescription Content */
+.pharmacist-prescription-details .pharmacist-prescription-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Prescription Info Section */
+.pharmacist-prescription-details .pharmacist-prescription-info {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.pharmacist-prescription-details .pharmacist-doctor-section {
+  margin-bottom: 1.5rem;
+}
+
+.pharmacist-prescription-details .pharmacist-doctor-title {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f1f3f4;
+}
+
+.pharmacist-prescription-details .pharmacist-patient-section {
+  margin-bottom: 1.5rem;
+}
+
+.pharmacist-prescription-details .pharmacist-patient-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.pharmacist-prescription-details .pharmacist-patient-title {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.pharmacist-prescription-details .pharmacist-view-patient-btn {
+  background: linear-gradient(135deg, #17a2b8, #138496);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.pharmacist-prescription-details .pharmacist-view-patient-btn:hover {
+  background: linear-gradient(135deg, #138496, #117a8b);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+}
+
+.pharmacist-prescription-details .pharmacist-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.pharmacist-prescription-details .pharmacist-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pharmacist-prescription-details .pharmacist-info-label {
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pharmacist-prescription-details .pharmacist-info-value {
+  color: #2c3e50;
+  font-size: 1rem;
+  line-height: 1.5;
+  background: #f8f9fa;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border-left: 4px solid #667eea;
+}
+
+/* Medicines Section */
+.pharmacist-prescription-details .pharmacist-medicines-section {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.pharmacist-prescription-details .pharmacist-section-header {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 1.5rem 2rem;
+  border-bottom: 2px solid #dee2e6;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pharmacist-prescription-details .pharmacist-section-icon {
+  font-size: 1.5rem;
+}
+
+.pharmacist-prescription-details .pharmacist-section-title {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* No Medicines State */
+.pharmacist-prescription-details .pharmacist-no-medicines {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #7f8c8d;
+}
+
+.pharmacist-prescription-details .pharmacist-no-medicines-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.pharmacist-prescription-details .pharmacist-no-medicines-text {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+/* Medicines Table */
+.pharmacist-prescription-details .pharmacist-medicines-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.pharmacist-prescription-details .pharmacist-medicines-table th {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #dee2e6;
+  white-space: nowrap;
+}
+
+.pharmacist-prescription-details .pharmacist-medicines-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #f1f3f4;
+  vertical-align: middle;
+}
+
+.pharmacist-prescription-details .pharmacist-medicines-table tbody tr:hover {
+  background: #f8f9fa;
+  transition: background-color 0.3s ease;
+}
+
+.pharmacist-prescription-details .pharmacist-medicine-id {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.pharmacist-prescription-details .pharmacist-medicine-name {
+  color: #2c3e50;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.pharmacist-prescription-details .pharmacist-medicine-dosage,
+.pharmacist-prescription-details .pharmacist-medicine-duration {
+  color: #495057;
+  font-size: 0.9rem;
+}
+
+.pharmacist-prescription-details .pharmacist-quantity-input {
+  width: 80px;
+  padding: 0.5rem;
+  border: 2px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: border-color 0.3s ease;
+}
+
+.pharmacist-prescription-details .pharmacist-quantity-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.pharmacist-prescription-details .pharmacist-add-to-cart-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.pharmacist-prescription-details .pharmacist-add-to-cart-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .pharmacist-prescription-details .pharmacist-header-content {
+    padding: 0 1rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-details-main {
+    padding: 1rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .pharmacist-prescription-details .pharmacist-header-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-back-btn,
+  .pharmacist-prescription-details .pharmacist-logout-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-page-header h2 {
+    font-size: 2rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-prescription-info {
+    padding: 1.5rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-section-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-patient-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-medicines-table {
+    font-size: 0.8rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-medicines-table th,
+  .pharmacist-prescription-details .pharmacist-medicines-table td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  /* Mobile table responsiveness */
+  .pharmacist-prescription-details .pharmacist-medicines-table,
+  .pharmacist-prescription-details .pharmacist-medicines-table thead,
+  .pharmacist-prescription-details .pharmacist-medicines-table tbody,
+  .pharmacist-prescription-details .pharmacist-medicines-table th,
+  .pharmacist-prescription-details .pharmacist-medicines-table td,
+  .pharmacist-prescription-details .pharmacist-medicines-table tr {
+    display: block;
+  }
+
+  .pharmacist-prescription-details .pharmacist-medicines-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .pharmacist-prescription-details .pharmacist-medicines-table tr {
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .pharmacist-prescription-details .pharmacist-medicines-table td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50% !important;
+    text-align: left;
+  }
+
+  .pharmacist-prescription-details .pharmacist-medicines-table td:before {
+    content: attr(data-label) ": ";
+    position: absolute;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #2c3e50;
+  }
+
+  .pharmacist-prescription-details .pharmacist-medicines-table td:last-child {
+    border-bottom: 0;
+  }
+
+  .pharmacist-prescription-details .pharmacist-quantity-input {
+    width: 100%;
+    max-width: 120px;
+  }
+
+  .pharmacist-prescription-details .pharmacist-add-to-cart-btn {
+    width: 100%;
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pharmacist-prescription-details .pharmacist-header-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-logo h1 {
+    font-size: 1.5rem;
+    color: white !important;
+  }
+
+  .pharmacist-prescription-details .pharmacist-page-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-prescription-info {
+    padding: 1rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-section-header {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-doctor-title {
+    font-size: 1.2rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-patient-title {
+    font-size: 1.1rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-info-value {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .pharmacist-prescription-details .pharmacist-medicines-table th,
+  .pharmacist-prescription-details .pharmacist-medicines-table td {
+    padding: 0.5rem 0.25rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .pharmacist-prescription-details .pharmacist-details-header,
+  .pharmacist-prescription-details .pharmacist-add-to-cart-btn,
+  .pharmacist-prescription-details .pharmacist-view-patient-btn {
+    display: none;
+  }
+
+  .pharmacist-prescription-details {
+    background: white;
+  }
+
+  .pharmacist-prescription-details .pharmacist-prescription-info,
+  .pharmacist-prescription-details .pharmacist-medicines-section {
+    box-shadow: none;
+    border: 1px solid #dee2e6;
+  }
+
+  .pharmacist-prescription-details .pharmacist-quantity-input {
+    border: 1px solid #000;
+  }
+}

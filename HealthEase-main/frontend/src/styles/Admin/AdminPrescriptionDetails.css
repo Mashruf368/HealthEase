@@ -1,4 +1,7 @@
-* {
+/* Scoped styles for AdminPrescriptionDetails component only */
+
+/* Remove global box-sizing - apply only within admin-prescription-details */
+.admin-prescription-details * {
   box-sizing: border-box;
 }
 
@@ -9,14 +12,14 @@
 }
 
 /* Header Styles */
-.prescription-details-header {
+.admin-prescription-details .admin-prescription-details-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 1rem 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.header-content {
+.admin-prescription-details .admin-details-header-content {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -25,27 +28,27 @@
   align-items: center;
 }
 
-.logo h1 {
+.admin-prescription-details .admin-details-logo h1 {
   margin: 0;
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.5px;
 }
 
-.logo-subtitle {
+.admin-prescription-details .admin-details-logo-subtitle {
   font-size: 0.9rem;
   opacity: 0.8;
   font-weight: 300;
 }
 
-.header-actions {
+.admin-prescription-details .admin-details-header-actions {
   display: flex;
   gap: 1rem;
   align-items: center;
 }
 
-.back-btn,
-.logout-btn {
+.admin-prescription-details .admin-details-back-btn,
+.admin-prescription-details .admin-details-logout-btn {
   background: rgba(255, 255, 255, 0.2);
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.3);
@@ -57,40 +60,40 @@
   backdrop-filter: blur(10px);
 }
 
-.back-btn:hover,
-.logout-btn:hover {
+.admin-prescription-details .admin-details-back-btn:hover,
+.admin-prescription-details .admin-details-logout-btn:hover {
   background: rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-2px);
 }
 
 /* Main Content */
-.prescription-details-main {
+.admin-prescription-details .admin-prescription-details-main {
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-.page-header {
+.admin-prescription-details .admin-details-page-header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.page-header h2 {
+.admin-prescription-details .admin-details-page-header h2 {
   font-size: 2.5rem;
   color: #2c3e50;
   margin-bottom: 0.5rem;
   font-weight: 300;
 }
 
-.page-header p {
+.admin-prescription-details .admin-details-page-header p {
   color: #7f8c8d;
   font-size: 1.1rem;
   margin: 0;
 }
 
 /* Message Styles */
-.message {
+.admin-prescription-details .admin-details-message {
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 2rem;
@@ -98,20 +101,20 @@
   font-weight: 500;
 }
 
-.message.success {
+.admin-prescription-details .admin-details-message.success {
   background: #d4edda;
   color: #155724;
   border: 1px solid #c3e6cb;
 }
 
-.message.error {
+.admin-prescription-details .admin-details-message.error {
   background: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
 
 /* Loading Styles */
-.loading-container {
+.admin-prescription-details .admin-details-loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,17 +123,17 @@
   color: #2c3e50;
 }
 
-.loading-spinner {
+.admin-prescription-details .admin-details-loading-spinner {
   width: 40px;
   height: 40px;
   border: 4px solid #e3e3e3;
   border-top: 4px solid #667eea;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: admin-details-spin 1s linear infinite;
   margin-bottom: 1rem;
 }
 
-@keyframes spin {
+@keyframes admin-details-spin {
   0% {
     transform: rotate(0deg);
   }
@@ -140,7 +143,7 @@
 }
 
 /* Content Container */
-.prescription-content {
+.admin-prescription-details .admin-prescription-content {
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -148,19 +151,19 @@
 }
 
 /* Basic Info Section */
-.prescription-info {
+.admin-prescription-details .admin-prescription-info {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   padding: 2rem;
   border-bottom: 2px solid #dee2e6;
 }
 
-.info-grid {
+.admin-prescription-details .admin-info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
 }
 
-.info-item {
+.admin-prescription-details .admin-info-item {
   background: white;
   padding: 1.5rem;
   border-radius: 8px;
@@ -168,7 +171,7 @@
   border-left: 4px solid #667eea;
 }
 
-.info-label {
+.admin-prescription-details .admin-info-label {
   font-weight: 600;
   color: #2c3e50;
   font-size: 0.9rem;
@@ -177,18 +180,18 @@
   margin-bottom: 0.5rem;
 }
 
-.info-value {
+.admin-prescription-details .admin-info-value {
   color: #495057;
   font-size: 1rem;
   line-height: 1.5;
 }
 
 /* Section Styles */
-.section {
+.admin-prescription-details .admin-details-section {
   padding: 2rem;
 }
 
-.section-header {
+.admin-prescription-details .admin-section-header {
   display: flex;
   align-items: center;
   margin-bottom: 1.5rem;
@@ -196,12 +199,12 @@
   border-bottom: 2px solid #f1f3f4;
 }
 
-.section-icon {
+.admin-prescription-details .admin-section-icon {
   font-size: 1.5rem;
   margin-right: 0.75rem;
 }
 
-.section-title {
+.admin-prescription-details .admin-section-title {
   font-size: 1.5rem;
   color: #2c3e50;
   font-weight: 600;
@@ -209,13 +212,13 @@
 }
 
 /* Medicine Cards */
-.medicines-grid {
+.admin-prescription-details .admin-medicines-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
-.medicine-card {
+.admin-prescription-details .admin-medicine-card {
   background: linear-gradient(135deg, #fff5f5 0%, #fef2f2 100%);
   border: 1px solid #fed7d7;
   border-radius: 8px;
@@ -224,12 +227,12 @@
   transition: all 0.3s ease;
 }
 
-.medicine-card:hover {
+.admin-prescription-details .admin-medicine-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.medicine-card::before {
+.admin-prescription-details .admin-medicine-card::before {
   content: "";
   position: absolute;
   top: 0;
@@ -240,7 +243,7 @@
   border-radius: 4px 0 0 4px;
 }
 
-.medicine-name {
+.admin-prescription-details .admin-medicine-name {
   font-size: 1.2rem;
   font-weight: 600;
   color: #2d3748;
@@ -249,18 +252,18 @@
   align-items: center;
 }
 
-.medicine-name::before {
+.admin-prescription-details .admin-medicine-name::before {
   content: "💊";
   margin-right: 0.5rem;
   font-size: 1rem;
 }
 
-.medicine-details {
+.admin-prescription-details .admin-medicine-details {
   display: grid;
   gap: 0.75rem;
 }
 
-.medicine-detail {
+.admin-prescription-details .admin-medicine-detail {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -268,30 +271,30 @@
   border-bottom: 1px solid #fed7d7;
 }
 
-.medicine-detail:last-child {
+.admin-prescription-details .admin-medicine-detail:last-child {
   border-bottom: none;
 }
 
-.detail-label {
+.admin-prescription-details .admin-detail-label {
   font-weight: 500;
   color: #4a5568;
   font-size: 0.9rem;
 }
 
-.detail-value {
+.admin-prescription-details .admin-detail-value {
   color: #2d3748;
   font-weight: 600;
   font-size: 0.9rem;
 }
 
 /* Test Cards */
-.tests-grid {
+.admin-prescription-details .admin-tests-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
-.test-card {
+.admin-prescription-details .admin-test-card {
   background: linear-gradient(135deg, #f0fff4 0%, #f7fafc 100%);
   border: 1px solid #c6f6d5;
   border-radius: 8px;
@@ -300,12 +303,12 @@
   transition: all 0.3s ease;
 }
 
-.test-card:hover {
+.admin-prescription-details .admin-test-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.test-card::before {
+.admin-prescription-details .admin-test-card::before {
   content: "";
   position: absolute;
   top: 0;
@@ -316,7 +319,7 @@
   border-radius: 4px 0 0 4px;
 }
 
-.test-name {
+.admin-prescription-details .admin-test-name {
   font-size: 1.2rem;
   font-weight: 600;
   color: #2d3748;
@@ -325,13 +328,13 @@
   align-items: center;
 }
 
-.test-name::before {
+.admin-prescription-details .admin-test-name::before {
   content: "🔬";
   margin-right: 0.5rem;
   font-size: 1rem;
 }
 
-.test-result {
+.admin-prescription-details .admin-test-result {
   display: inline-block;
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
@@ -340,19 +343,19 @@
   margin-bottom: 0.75rem;
 }
 
-.test-result.pending {
+.admin-prescription-details .admin-test-result.pending {
   background: #fef5e7;
   color: #d69e2e;
   border: 1px solid #f6e05e;
 }
 
-.test-result.completed {
+.admin-prescription-details .admin-test-result.completed {
   background: #f0fff4;
   color: #38a169;
   border: 1px solid #c6f6d5;
 }
 
-.test-comments {
+.admin-prescription-details .admin-test-comments {
   color: #4a5568;
   font-style: italic;
   font-size: 0.9rem;
@@ -360,115 +363,115 @@
 }
 
 /* Empty States */
-.empty-state {
+.admin-prescription-details .admin-empty-state {
   text-align: center;
   padding: 3rem 2rem;
   color: #7f8c8d;
 }
 
-.empty-icon {
+.admin-prescription-details .admin-empty-icon {
   font-size: 3rem;
   margin-bottom: 1rem;
   opacity: 0.5;
 }
 
-.empty-title {
+.admin-prescription-details .admin-empty-title {
   font-size: 1.2rem;
   color: #2c3e50;
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
 
-.empty-description {
+.admin-prescription-details .admin-empty-description {
   font-size: 0.9rem;
   margin: 0;
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-  .header-content {
+  .admin-prescription-details .admin-details-header-content {
     padding: 0 1rem;
   }
 
-  .prescription-details-main {
+  .admin-prescription-details .admin-prescription-details-main {
     padding: 1rem;
   }
 }
 
 @media (max-width: 768px) {
-  .header-actions {
+  .admin-prescription-details .admin-details-header-actions {
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  .back-btn,
-  .logout-btn {
+  .admin-prescription-details .admin-details-back-btn,
+  .admin-prescription-details .admin-details-logout-btn {
     padding: 0.4rem 1rem;
     font-size: 0.9rem;
   }
 
-  .page-header h2 {
+  .admin-prescription-details .admin-details-page-header h2 {
     font-size: 2rem;
   }
 
-  .info-grid {
+  .admin-prescription-details .admin-info-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
 
-  .info-item {
+  .admin-prescription-details .admin-info-item {
     padding: 1rem;
   }
 
-  .section {
+  .admin-prescription-details .admin-details-section {
     padding: 1.5rem 1rem;
   }
 
-  .medicines-grid,
-  .tests-grid {
+  .admin-prescription-details .admin-medicines-grid,
+  .admin-prescription-details .admin-tests-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
 
-  .medicine-card,
-  .test-card {
+  .admin-prescription-details .admin-medicine-card,
+  .admin-prescription-details .admin-test-card {
     padding: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .header-content {
+  .admin-prescription-details .admin-details-header-content {
     flex-direction: column;
     gap: 1rem;
   }
 
-  .logo h1 {
+  .admin-prescription-details .admin-details-logo h1 {
     font-size: 1.5rem;
   }
 
-  .page-header h2 {
+  .admin-prescription-details .admin-details-page-header h2 {
     font-size: 1.5rem;
   }
 
-  .prescription-details-main {
+  .admin-prescription-details .admin-prescription-details-main {
     padding: 1rem 0.5rem;
   }
 
-  .prescription-info {
+  .admin-prescription-details .admin-prescription-info {
     padding: 1rem;
   }
 
-  .section {
+  .admin-prescription-details .admin-details-section {
     padding: 1rem 0.5rem;
   }
 
-  .section-header {
+  .admin-prescription-details .admin-section-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
 
-  .medicine-detail {
+  .admin-prescription-details .admin-medicine-detail {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.25rem;
@@ -477,8 +480,8 @@
 
 /* Print Styles */
 @media print {
-  .prescription-details-header,
-  .header-actions {
+  .admin-prescription-details .admin-prescription-details-header,
+  .admin-prescription-details .admin-details-header-actions {
     display: none;
   }
 
@@ -486,12 +489,12 @@
     background: white;
   }
 
-  .prescription-content {
+  .admin-prescription-details .admin-prescription-content {
     box-shadow: none;
   }
 
-  .medicine-card,
-  .test-card {
+  .admin-prescription-details .admin-medicine-card,
+  .admin-prescription-details .admin-test-card {
     break-inside: avoid;
     box-shadow: none;
     border: 1px solid #ddd;
