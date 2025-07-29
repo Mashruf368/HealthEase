@@ -15,9 +15,10 @@ router.get("/admin/patient/:id", authorizeadmin, async (req, res) => {
     );
 
     const prescriptionResult = await pool.query(
-      `SELECT doctor_id, consultation_id, date 
-       FROM prescription 
-       WHERE patient_id = $1
+      `SELECT d.name, consultation_id, date 
+       FROM prescription p,doctor d
+       WHERE p.doctor_id = d.doctor_id 
+       and patient_id = $1
        ORDER BY date DESC`,
       [patientid]
     );

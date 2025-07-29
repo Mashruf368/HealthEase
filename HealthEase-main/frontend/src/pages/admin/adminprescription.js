@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../../styles/Admin/AdminPrescription.css";
 
 const AdminPrescriptions = () => {
   const [prescriptions, setPrescriptions] = useState([]);
@@ -56,9 +57,17 @@ const AdminPrescriptions = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
+  const handleBackToDashboard = () => {
+    navigate("/admin/dashboard");
+  };
+
   const renderPagination = () => {
     const buttons = [];
-
     const start = Math.max(1, currentPage - 2);
     const end = Math.min(totalPages, currentPage + 2);
 
@@ -67,15 +76,7 @@ const AdminPrescriptions = () => {
         <button
           key={i}
           onClick={() => handlePageChange(i)}
-          style={{
-            margin: "0 5px",
-            padding: "5px 10px",
-            backgroundColor: i === currentPage ? "#007bff" : "#f0f0f0",
-            color: i === currentPage ? "white" : "black",
-            border: "1px solid #ccc",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
+          className={`pagination-btn ${i === currentPage ? "active" : ""}`}
         >
           {i}
         </button>
@@ -83,113 +84,209 @@ const AdminPrescriptions = () => {
     }
 
     return (
-      <div style={{ marginTop: "1rem" }}>
+      <div className="pagination-container">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          style={{ marginRight: "10px" }}
+          className="pagination-btn prev-btn"
         >
-          &lt; Prev
+          ← Prev
         </button>
         {buttons}
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          style={{ marginLeft: "10px" }}
+          className="pagination-btn next-btn"
         >
-          Next &gt;
+          Next →
         </button>
       </div>
     );
   };
 
   if (loading) {
-    return <p style={{ padding: "2rem" }}>Loading prescriptions...</p>;
+    return (
+      <div className="admin-prescriptions">
+        <header className="prescriptions-header">
+          <div className="header-content">
+            <div className="logo">
+              <h1>HealthEase</h1>
+              <span className="logo-subtitle">Admin Portal</span>
+            </div>
+            <button className="logout-btn" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+        </header>
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <p>Loading prescriptions...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>Prescriptions</h2>
-      {message && <p style={{ color: "red" }}>{message}</p>}
-      {prescriptions.length === 0 ? (
-        <p>No prescriptions found.</p>
-      ) : (
-        <>
-          <table
-            border="1"
-            cellPadding="10"
-            style={{ marginTop: "1rem", width: "100%" }}
-          >
-            <thead>
-              <tr>
-                <th>Patient Name</th>
-                <th>Doctor Name</th>
-                <th>Appointment ID</th>
-                <th>Consultation ID</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {prescriptions.map((p, idx) => (
-                <tr key={idx}>
-                  <td>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-end",
-                      }}
-                    >
-                      <span style={{ alignSelf: "flex-start" }}>
-                        {p.patient_name}
-                      </span>
-                      <button
-                        onClick={() =>
-                          navigate(`/admin/patient/${p.patient_id}`)
-                        }
-                        style={{
-                          marginTop: "4px",
-                          padding: "0.3rem 0.6rem",
-                          backgroundColor: "#28a745",
-                          color: "#fff",
-                          border: "none",
-                          borderRadius: "4px",
-                          cursor: "pointer",
-                          fontSize: "0.8rem",
-                        }}
-                      >
-                        View Profile
-                      </button>
-                    </div>
-                  </td>
+    <div className="admin-prescriptions">
+      {/* Header */}
+      <header className="prescriptions-header">
+        <div className="header-content">
+          <div className="logo">
+            <h1>HealthEase</h1>
+            <span className="logo-subtitle">Admin Portal</span>
+          </div>
+          <div className="header-actions">
+            <button className="back-btn" onClick={handleBackToDashboard}>
+              ← Dashboard
+            </button>
+            <button className="logout-btn" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+        </div>
+      </header>
 
-                  <td>{p.doctor_name}</td>
-                  <td>{p.appointment_id}</td>
-                  <td>{p.consultation_id}</td>
-                  <td>
-                    <button
-                      onClick={() =>
-                        navigate(`/admin/prescription/${p.consultation_id}`)
-                      }
-                      style={{
-                        padding: "0.5rem 1rem",
-                        backgroundColor: "#007bff",
-                        color: "#fff",
-                        border: "none",
-                        borderRadius: "4px",
-                        cursor: "pointer",
-                      }}
-                    >
-                      View Prescription
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {renderPagination()}
-        </>
-      )}
+      {/* Main Content */}
+      <main className="prescriptions-main">
+        <div className="page-header">
+          <h2>Patient Prescriptions</h2>
+          <p>View and manage all patient prescriptions in the system</p>
+        </div>
+
+        {message && (
+          <div
+            className={`message ${
+              message.includes("Failed") ? "error" : "success"
+            }`}
+          >
+            {message}
+          </div>
+        )}
+
+        <div className="prescriptions-container">
+          {prescriptions.length === 0 ? (
+            <div className="no-prescriptions">
+              <div className="no-prescriptions-icon">📋</div>
+              <h3>No Prescriptions Found</h3>
+              <p>
+                No prescriptions are available at the moment or no results match
+                your criteria.
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="table-container">
+                <table className="prescriptions-table">
+                  {/* <thead>
+                    <tr>
+                      <th>Patient</th>
+                      <th>Doctor</th>
+                      <th>Consultation ID</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {prescriptions.map((p, idx) => (
+                      <tr key={idx}>
+                        <td>
+                          <div className="patient-cell">
+                            <span className="patient-name">
+                              {p.patient_name}
+                            </span>
+                            <button
+                              onClick={() =>
+                                navigate(`/admin/patient/${p.patient_id}`)
+                              }
+                              className="action-btn profile-btn"
+                            >
+                              View Profile
+                            </button>
+                          </div>
+                        </td>
+                        <td>
+                          <span className="doctor-name">{p.doctor_name}</span>
+                        </td>
+                        <td>
+                          <span className="appointment-id">
+                            #{p.appointment_id}
+                          </span>
+                        </td>
+                        <td>
+                          <span className="consultation-id">
+                            #{p.consultation_id}
+                          </span>
+                        </td>
+                        <td>
+                          <button
+                            onClick={() =>
+                              navigate(
+                                `/admin/prescription/${p.consultation_id}`
+                              )
+                            }
+                            className="action-btn prescription-btn"
+                          >
+                            View Prescription
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody> */}
+                  <thead>
+                    <tr>
+                      <th>Patient</th>
+                      <th>Doctor</th>
+                      <th>Consultation ID</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {prescriptions.map((p, idx) => (
+                      <tr key={idx}>
+                        <td>
+                          <div className="patient-cell">
+                            <span className="patient-name">
+                              {p.patient_name}
+                            </span>
+                            <button
+                              onClick={() =>
+                                navigate(`/admin/patient/${p.patient_id}`)
+                              }
+                              className="action-btn profile-btn"
+                            >
+                              View Profile
+                            </button>
+                          </div>
+                        </td>
+                        <td>
+                          <span className="doctor-name">{p.doctor_name}</span>
+                        </td>
+                        <td>
+                          <span className="consultation-id">
+                            #{p.consultation_id}
+                          </span>
+                        </td>
+                        <td>
+                          <button
+                            onClick={() =>
+                              navigate(
+                                `/admin/prescription/${p.consultation_id}`
+                              )
+                            }
+                            className="action-btn prescription-btn"
+                          >
+                            View Prescription
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {totalPages > 1 && renderPagination()}
+            </>
+          )}
+        </div>
+      </main>
     </div>
   );
 };

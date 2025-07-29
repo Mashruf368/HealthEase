@@ -12,7 +12,10 @@ router.get("/profile/prescriptions", authorization, async (req, res) => {
     const patid = stuff.rows[0].patient_id;
     console.log(patid);
     const result = await pool.query(
-      "select * from prescription where patient_id = $1",
+      `select d.name as doctor_name,p.appointment_id,p.consultation_id 
+      from prescription p,doctor d
+      where p.doctor_id = d.doctor_id
+      and patient_id = $1`,
       [patid]
     );
     console.log("sent prescs successfully");
