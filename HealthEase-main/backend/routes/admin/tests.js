@@ -42,24 +42,58 @@ router.get(
     try {
       const result = await pool.query(
         `
-      SELECT rt.test_id, rt.test_result, rt.updated_at, rt.consultation_id, rt.comments,rt.payment_state,rt.test_number,
-             t.test_name
-      FROM recommended_tests rt
-      JOIN tests t ON rt.test_id = t.test_id
-      JOIN prescription p ON rt.consultation_id = p.consultation_id
-      WHERE p.patient_id = $1
-      ORDER BY rt.updated_at DESC NULLS LAST, rt.consultation_id DESC
-      `,
+        SELECT rt.test_id, rt.test_result, rt.updated_at, rt.consultation_id, rt.comments,
+               rt.payment_state, rt.test_number, a.name AS patient_name,
+               t.test_name
+        FROM recommended_tests rt
+        JOIN tests t ON rt.test_id = t.test_id
+        JOIN prescription p ON rt.consultation_id = p.consultation_id
+        JOIN patient a ON a.patient_id = rt.patient_id
+        WHERE p.patient_id = $1
+        ORDER BY rt.updated_at DESC NULLS LAST, rt.consultation_id DESC
+        `,
         [patientId]
       );
 
-      res.status(200).json({ tests: result.rows });
+      const tests = result.rows;
+      const patientName = tests.length > 0 ? tests[0].patient_name : null;
+
+      res.status(200).json({ tests, patientName });
     } catch (err) {
       console.error("Error fetching patient test history:", err);
-      res.status(500).json({ error: "Internal Server Error" + err });
+      res.status(500).json({ error: "Internal Server Error: " + err.message });
     }
   }
 );
+
+// router.get(
+//   "/pathologist/patient/:id/tests",
+//   authorization,
+//   async (req, res) => {
+//     const patientId = req.params.id;
+
+//     try {
+//       const result = await pool.query(
+//         `
+//       SELECT rt.test_id, rt.test_result, rt.updated_at, rt.consultation_id, rt.comments,rt.payment_state,rt.test_number,a.name as patient_name,
+//              t.test_name
+//       FROM recommended_tests rt
+//       JOIN tests t ON rt.test_id = t.test_id
+//       JOIN prescription p ON rt.consultation_id = p.consultation_id
+//       join patient a on a.patient_id = rt.patient_id
+//       WHERE p.patient_id = $1
+//       ORDER BY rt.updated_at DESC NULLS LAST, rt.consultation_id DESC
+//       `,
+//         [patientId]
+//       );
+
+//       res.status(200).json({ tests: result.rows });
+//     } catch (err) {
+//       console.error("Error fetching patient test history:", err);
+//       res.status(500).json({ error: "Internal Server Error" + err });
+//     }
+//   }
+// );
 
 // router.post(
 //   "/pathologist/test/payment/:id3",
