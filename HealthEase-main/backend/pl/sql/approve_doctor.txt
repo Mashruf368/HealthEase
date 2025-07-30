@@ -1,0 +1,35 @@
+CREATE OR REPLACE FUNCTION approve_doctor(pending_id INT, hashed_pass TEXT)
+RETURNS VOID AS $$
+DECLARE
+  new_user_id INT;
+  new_doctor_id INT;
+  pending RECORD;
+BEGIN
+  -- 1. Fetch the pending doctor
+  SELECT * INTO pending FROM pending_doctor WHERE pending_doctor.pending_id = approve_doctor.pending_id;
+
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'Pending doctor not found';
+  END IF;
+
+  -- 2. Insert into accounts using the hashed password passed from Node.js
+  INSERT INTO accounts (username, password, role)
+  VALUES (pending.username, hashed_pass, 'DOC')
+  RETURNING user_id INTO new_user_id;
+
+  -- 3. Insert into doctor
+  INSERT INTO doctor (name, age, gender, contacts, speciality, details, user_id)
+  VALUES (pending.name, pending.age, pending.gender, pending.contacts, pending.speciality, pending.details, new_user_id)
+  RETURNING doctor_id INTO new_doctor_id;
+
+  -- 4. Transfer degrees
+  INSERT INTO doctor_degree (degree_id, doctor_id, institute, year_of_passing)
+  SELECT degree_id, new_doctor_id, institute, year_of_passing
+  FROM pending_degree
+  WHERE pending_degree.pending_id = approve_doctor.pending_id;
+
+  -- 5. Cleanup
+  DELETE FROM pending_degree WHERE pending_degree.pending_id = approve_doctor.pending_id;
+  DELETE FROM pending_doctor WHERE pending_doctor.pending_id = approve_doctor.pending_id;
+END;
+$$ LANGUAGE plpgsql;

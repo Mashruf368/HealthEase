@@ -189,9 +189,9 @@ const PharmacistPrescriptions = () => {
                   <thead>
                     <tr>
                       <th>Patient Information</th>
-                      <th>Patient ID</th>
+                      {/* <th>Patient ID</th> */}
                       <th>Doctor</th>
-                      <th>Appointment ID</th>
+                      {/* <th>Appointment ID</th> */}
                       <th>Consultation ID</th>
                       <th>Actions</th>
                     </tr>
@@ -206,21 +206,21 @@ const PharmacistPrescriptions = () => {
                             </span>
                           </div>
                         </td>
-                        <td data-label="Patient ID">
+                        {/* <td data-label="Patient ID">
                           <span className="pharmacist-patient-id">
                             #{prescription.patient_id}
                           </span>
-                        </td>
+                        </td> */}
                         <td data-label="Doctor">
                           <span className="pharmacist-doctor-name">
                             Dr. {prescription.doctor_name}
                           </span>
                         </td>
-                        <td data-label="Appointment ID">
+                        {/* <td data-label="Appointment ID">
                           <span className="pharmacist-appointment-id">
                             #{prescription.appointment_id}
                           </span>
-                        </td>
+                        </td> */}
                         <td data-label="Consultation ID">
                           <span className="pharmacist-consultation-id">
                             #{prescription.consultation_id}

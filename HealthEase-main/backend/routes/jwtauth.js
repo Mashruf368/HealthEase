@@ -73,6 +73,27 @@ router.post("/register", async (req, res) => {
       ]
     );
 
+    const userId = newUser.rows[0].user_id;
+
+    // Fetch patient_id inserted by the trigger using the user_id
+    const patientRes = await pool.query(
+      `SELECT patient_id FROM patient WHERE user_id = $1`,
+      [userId]
+    );
+
+    if (patientRes.rows.length === 0) {
+      return res.status(500).send("Patient not found after trigger execution");
+    }
+
+    const patientId = patientRes.rows[0].patient_id;
+
+    // Insert into payment table
+    await pool.query(
+      `INSERT INTO payment (patient_id, account_balance)
+       VALUES ($1, 0)`,
+      [patientId]
+    );
+
     // Generate JWT token
     const token = jwtGenerator(newUser.rows[0].user_id);
     return res.status(200).json({ token });

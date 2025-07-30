@@ -85,6 +85,7 @@ router.post("/signin/doctor", async (req, res) => {
     );
 
     const pending_id = result.rows[0].pending_id;
+    console.log("Pending ID created:", pending_id);
 
     // Insert degrees
     for (const degree of degrees) {

@@ -570,7 +570,7 @@ const AdminPatientProfile = () => {
                         <th>Doctor Name</th>
                         <th>Consultation ID</th>
                         <th>Date</th>
-                        <th>Status</th>
+                        {/* <th>Status</th> */}
                         <th>Actions</th>
                       </tr>
                     </thead>
@@ -599,11 +599,11 @@ const AdminPatientProfile = () => {
                               )}
                             </span>
                           </td>
-                          <td>
+                          {/* <td>
                             <span className="admin-patient-status-badge admin-patient-active">
                               Active
                             </span>
-                          </td>
+                          </td> */}
                           <td>
                             <button
                               className="admin-patient-view-details-btn"

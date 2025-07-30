@@ -1,0 +1,276 @@
+/* PathologistDashboard.css - Unique styles for PathologistDashboard component */
+.pathologist-dashboard-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #dbefff 0%, #b3cde0 100%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.pathologist-dashboard-header {
+  background: linear-gradient(135deg, #4568dc, #b06ab3);
+  color: white;
+  padding: 1rem 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pathologist-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pathologist-logo h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.pathologist-logo-subtitle {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+/* Main Section */
+.pathologist-dashboard-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.pathologist-welcome-section {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pathologist-welcome-section h2 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.pathologist-welcome-section p {
+  color: #555;
+  font-size: 1.1rem;
+}
+
+/* Action Buttons */
+.pathologist-action-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.pathologist-prescriptions-container {
+  width: 100%;
+  max-width: 600px;
+}
+
+.pathologist-action-btn {
+  background: white;
+  border: none;
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.pathologist-btn-icon {
+  font-size: 2.5rem;
+  margin-right: 1.5rem;
+  flex-shrink: 0;
+}
+
+.pathologist-btn-content {
+  flex: 1;
+}
+
+.pathologist-btn-content h3 {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.pathologist-btn-content p {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Button Hover Effects */
+.pathologist-prescriptions-btn:hover {
+  background: linear-gradient(135deg, #e67e22, #f39c12);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.pathologist-action-btn:hover .pathologist-btn-content h3,
+.pathologist-action-btn:hover .pathologist-btn-content p {
+  color: white;
+}
+
+/* Update Balance Section */
+.pathologist-update-balance-section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.pathologist-balance-title {
+  margin: 0 0 1rem 0;
+  color: #2c3e50;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.pathologist-balance-input-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.pathologist-patient-input {
+  flex: 1;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 2px solid #ecf3ff;
+  border-radius: 8px;
+  background: #f8fbff;
+  color: #2c3e50;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.pathologist-patient-input:focus {
+  outline: none;
+  border-color: #4568dc;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(69, 104, 220, 0.1);
+}
+
+.pathologist-patient-input::placeholder {
+  color: #999;
+}
+
+.pathologist-balance-btn {
+  background: linear-gradient(135deg, #8e44ad, #9b59b6);
+  color: white;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+.pathologist-balance-btn:hover {
+  background: linear-gradient(135deg, #7d3c98, #8e44ad);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.pathologist-balance-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pathologist-header-content {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .pathologist-dashboard-main {
+    padding: 1rem;
+  }
+
+  .pathologist-welcome-section h2 {
+    font-size: 2rem;
+  }
+
+  .pathologist-action-btn {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .pathologist-btn-icon {
+    margin: 0 0 1rem 0;
+  }
+
+  .pathologist-update-balance-section {
+    padding: 1.5rem;
+  }
+
+  .pathologist-balance-input-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pathologist-balance-btn {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .pathologist-prescriptions-container,
+  .pathologist-update-balance-section {
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .pathologist-logo h1 {
+    font-size: 1.5rem;
+  }
+
+  .pathologist-welcome-section h2 {
+    font-size: 1.7rem;
+  }
+
+  .pathologist-action-btn {
+    padding: 1rem;
+  }
+
+  .pathologist-btn-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .pathologist-btn-content p {
+    font-size: 0.9rem;
+  }
+
+  .pathologist-update-balance-section {
+    padding: 1rem;
+  }
+
+  .pathologist-balance-title {
+    font-size: 1.2rem;
+  }
+}

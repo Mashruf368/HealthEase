@@ -298,8 +298,10 @@ const PathologistPrescriptionDetails = () => {
                   >
                     <div className="pathologist-details-medicine-icon">💊</div>
                     <div className="pathologist-details-medicine-info">
-                      <strong>{med.name}</strong> - {med.dosage}, {med.duration}{" "}
-                      days
+                      <strong>{med.name}</strong> - {"Dosage "}
+                      {med.dosage}
+                      {" for "}
+                      {med.duration}
                     </div>
                   </li>
                 ))}

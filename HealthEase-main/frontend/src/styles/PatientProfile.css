@@ -1,0 +1,314 @@
+/* Profile.css - Unique styles for Profile component */
+.patientprofile-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #dbefff 0%, #b3cde0 100%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+}
+
+.patientprofile-main-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+}
+
+/* Loading State */
+.patientprofile-loading {
+  text-align: center;
+  padding: 3rem;
+  color: #2c3e50;
+  font-size: 1.2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Left Section - Prescriptions and Tests */
+.patientprofile-left-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.patientprofile-section-title {
+  color: #2c3e50;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.patientprofile-tests-title {
+  color: #2c3e50;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 3rem 0 1.5rem 0;
+  text-align: center;
+}
+
+/* Error Message */
+.patientprofile-error-message {
+  background: #ffe5e5;
+  border: 1px solid #ffb3b3;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  color: #c0392b;
+  text-align: center;
+}
+
+/* Tables */
+.patientprofile-table {
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+.patientprofile-table thead {
+  background: linear-gradient(135deg, #4568dc, #b06ab3);
+  color: white;
+}
+
+.patientprofile-table th {
+  padding: 1.2rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.patientprofile-table tbody tr {
+  border-bottom: 1px solid #ecf3ff;
+  transition: background-color 0.3s ease;
+}
+
+.patientprofile-table tbody tr:hover {
+  background-color: #f8fbff;
+}
+
+.patientprofile-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.patientprofile-table td {
+  padding: 1rem;
+  color: #2c3e50;
+  vertical-align: middle;
+}
+
+.patientprofile-no-data {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+/* View Details Button */
+.patientprofile-view-btn {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.patientprofile-view-btn:hover {
+  background: linear-gradient(135deg, #229954, #27ae60);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.patientprofile-view-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Right Section - Profile Edit */
+.patientprofile-right-section {
+  width: 400px;
+  flex-shrink: 0;
+}
+
+.patientprofile-edit-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 2rem;
+}
+
+.patientprofile-edit-title {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+  border-bottom: 2px solid #ecf3ff;
+  padding-bottom: 1rem;
+}
+
+/* Form Elements */
+.patientprofile-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.patientprofile-label {
+  display: block;
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.patientprofile-input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #ecf3ff;
+  border-radius: 6px;
+  background: #f8fbff;
+  color: #2c3e50;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.patientprofile-input:focus {
+  outline: none;
+  border-color: #4568dc;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(69, 104, 220, 0.1);
+}
+
+.patientprofile-textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #ecf3ff;
+  border-radius: 6px;
+  background: #f8fbff;
+  color: #2c3e50;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+  box-sizing: border-box;
+}
+
+.patientprofile-textarea:focus {
+  outline: none;
+  border-color: #4568dc;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(69, 104, 220, 0.1);
+}
+
+/* Save Button */
+.patientprofile-save-btn {
+  background: linear-gradient(135deg, #3498db, #5dade2);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.patientprofile-save-btn:hover {
+  background: linear-gradient(135deg, #2980b9, #3498db);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.patientprofile-save-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .patientprofile-main-wrapper {
+    flex-direction: column;
+  }
+
+  .patientprofile-right-section {
+    width: 100%;
+  }
+
+  .patientprofile-edit-card {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .patientprofile-container {
+    padding: 1rem;
+  }
+
+  .patientprofile-main-wrapper {
+    gap: 1rem;
+  }
+
+  .patientprofile-section-title,
+  .patientprofile-tests-title {
+    font-size: 1.5rem;
+  }
+
+  .patientprofile-table {
+    font-size: 0.9rem;
+  }
+
+  .patientprofile-table th,
+  .patientprofile-table td {
+    padding: 0.8rem 0.5rem;
+  }
+
+  .patientprofile-edit-card {
+    padding: 1.5rem;
+  }
+
+  .patientprofile-edit-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .patientprofile-table {
+    font-size: 0.8rem;
+  }
+
+  .patientprofile-table th,
+  .patientprofile-table td {
+    padding: 0.6rem 0.3rem;
+  }
+
+  .patientprofile-view-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .patientprofile-edit-card {
+    padding: 1rem;
+  }
+
+  .patientprofile-form-group {
+    margin-bottom: 1rem;
+  }
+}

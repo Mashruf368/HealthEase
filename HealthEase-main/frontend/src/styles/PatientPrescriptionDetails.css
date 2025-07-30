@@ -1,0 +1,250 @@
+/* AdminPrescriptionDetails.css - Unique styles for AdminPrescriptionDetails component */
+.patientprescdetails-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #dbefff 0%, #b3cde0 100%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+}
+
+.patientprescdetails-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Loading and Error States */
+.patientprescdetails-loading {
+  text-align: center;
+  padding: 3rem;
+  color: #2c3e50;
+  font-size: 1.2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.patientprescdetails-error {
+  text-align: center;
+  padding: 3rem;
+  color: #c0392b;
+  font-size: 1.2rem;
+  background: #ffe5e5;
+  border: 1px solid #ffb3b3;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.patientprescdetails-no-data {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+  font-size: 1.2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Title */
+.patientprescdetails-main-title {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Prescription Overview Card */
+.patientprescdetails-overview-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #4568dc;
+}
+
+.patientprescdetails-overview-item {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.patientprescdetails-overview-item:last-child {
+  margin-bottom: 0;
+}
+
+.patientprescdetails-overview-label {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Section Titles */
+.patientprescdetails-section-title {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1.5rem 0;
+  text-align: center;
+  position: relative;
+}
+
+.patientprescdetails-section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(135deg, #4568dc, #b06ab3);
+  border-radius: 2px;
+}
+
+/* Medicine Cards */
+.patientprescdetails-medicine-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #27ae60;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.patientprescdetails-medicine-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.patientprescdetails-medicine-item {
+  color: #2c3e50;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.patientprescdetails-medicine-label {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Test Cards */
+.patientprescdetails-test-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #e67e22;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.patientprescdetails-test-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.patientprescdetails-test-item {
+  color: #2c3e50;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.patientprescdetails-test-label {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.patientprescdetails-test-result-pending {
+  color: #f39c12;
+  font-style: italic;
+}
+
+/* No Data Messages */
+.patientprescdetails-no-medicines,
+.patientprescdetails-no-tests {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+/* Back Button (if you want to add one) */
+.patientprescdetails-back-btn {
+  background: linear-gradient(135deg, #3498db, #5dade2);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.patientprescdetails-back-btn:hover {
+  background: linear-gradient(135deg, #2980b9, #3498db);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.patientprescdetails-back-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .patientprescdetails-container {
+    padding: 1rem;
+  }
+
+  .patientprescdetails-main-title {
+    font-size: 2rem;
+  }
+
+  .patientprescdetails-section-title {
+    font-size: 1.5rem;
+  }
+
+  .patientprescdetails-overview-card,
+  .patientprescdetails-medicine-card,
+  .patientprescdetails-test-card {
+    padding: 1.2rem;
+  }
+
+  .patientprescdetails-overview-item,
+  .patientprescdetails-medicine-item,
+  .patientprescdetails-test-item {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .patientprescdetails-main-title {
+    font-size: 1.7rem;
+  }
+
+  .patientprescdetails-section-title {
+    font-size: 1.3rem;
+  }
+
+  .patientprescdetails-overview-card,
+  .patientprescdetails-medicine-card,
+  .patientprescdetails-test-card {
+    padding: 1rem;
+  }
+
+  .patientprescdetails-overview-item,
+  .patientprescdetails-medicine-item,
+  .patientprescdetails-test-item {
+    font-size: 0.9rem;
+  }
+}

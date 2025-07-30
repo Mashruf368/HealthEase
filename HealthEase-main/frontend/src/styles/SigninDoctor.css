@@ -1,0 +1,318 @@
+/* SignInDoctor.css - Unique styles for SignInDoctor component */
+
+.signin-doctor-container {
+  margin-top: 60px; /* height of TopBar */
+  min-height: calc(100vh - 60px); /* fill remaining viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem 1rem;
+}
+
+/* Main card container */
+.signin-doctor-card {
+  background-color: #6a6ffb;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  color: white;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Custom scrollbar for the card */
+.signin-doctor-card::-webkit-scrollbar {
+  width: 8px;
+}
+
+.signin-doctor-card::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.signin-doctor-card::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.signin-doctor-card::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Title with glow animation */
+.signin-doctor-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  animation: signinDoctorGlow 3s ease-in-out infinite;
+}
+
+@keyframes signinDoctorGlow {
+  0%,
+  100% {
+    text-shadow: 0 0 10px #4e54c8, 0 0 20px #6a6ffb;
+  }
+  50% {
+    text-shadow: 0 0 15px #8f94fb, 0 0 30px #b3b7ff;
+  }
+}
+
+/* Form styling */
+.signin-doctor-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Basic fields container */
+.signin-doctor-basic-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.signin-doctor-field-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input styling */
+.signin-doctor-input {
+  padding: 14px 16px;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.signin-doctor-input::placeholder {
+  color: #ddd;
+  font-weight: 400;
+}
+
+.signin-doctor-input:focus {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Select dropdown styling */
+.signin-doctor-select {
+  padding: 14px 16px;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.signin-doctor-select:focus {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.signin-doctor-select option {
+  background-color: #4e54c8;
+  color: white;
+  padding: 10px;
+}
+
+/* Degrees section */
+.signin-doctor-degrees-section {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 1rem 0;
+}
+
+.signin-doctor-degrees-title {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #f0f0f0;
+}
+
+.signin-doctor-degree-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.signin-doctor-degree-input {
+  grid-column: span 1;
+}
+
+.signin-doctor-degree-inputs input:last-of-type {
+  grid-column: span 2;
+}
+
+/* Add degree button */
+.signin-doctor-add-degree-btn {
+  grid-column: span 2;
+  padding: 12px 20px;
+  background-color: #4e54c8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.signin-doctor-add-degree-btn:hover {
+  background-color: #3b41a1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Degrees list */
+.signin-doctor-degrees-list {
+  margin-top: 1.5rem;
+}
+
+.signin-doctor-degrees-list-title {
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  color: #f0f0f0;
+  font-weight: 600;
+}
+
+.signin-doctor-degrees-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.signin-doctor-degree-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  border-left: 3px solid #4e54c8;
+}
+
+/* Submit button */
+.signin-doctor-submit-btn {
+  padding: 16px 24px;
+  background-color: #4e54c8;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.signin-doctor-submit-btn:hover {
+  background-color: #3b41a1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(78, 84, 200, 0.4);
+}
+
+.signin-doctor-submit-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(78, 84, 200, 0.3);
+}
+
+/* Message styling */
+.signin-doctor-message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.signin-doctor-success {
+  background-color: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.signin-doctor-error {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .signin-doctor-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .signin-doctor-card {
+    padding: 2rem 1.5rem;
+    max-width: 95%;
+  }
+
+  .signin-doctor-title {
+    font-size: 1.8rem;
+  }
+
+  .signin-doctor-degree-inputs {
+    grid-template-columns: 1fr;
+  }
+
+  .signin-doctor-degree-input {
+    grid-column: span 1;
+  }
+
+  .signin-doctor-degree-inputs input:last-of-type {
+    grid-column: span 1;
+  }
+
+  .signin-doctor-add-degree-btn {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .signin-doctor-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .signin-doctor-title {
+    font-size: 1.6rem;
+  }
+
+  .signin-doctor-input,
+  .signin-doctor-select {
+    padding: 12px 14px;
+    font-size: 0.95rem;
+  }
+
+  .signin-doctor-submit-btn {
+    padding: 14px 20px;
+    font-size: 1.1rem;
+  }
+
+  .signin-doctor-degrees-section {
+    padding: 1rem;
+  }
+}

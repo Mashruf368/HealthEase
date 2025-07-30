@@ -545,7 +545,7 @@ const DoctorSchedulePage = () => {
                     <th>Patient</th>
                     <th>Date</th>
                     <th>Time</th>
-                    <th>Status</th>
+                    {/* <th>Status</th> */}
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -582,7 +582,7 @@ const DoctorSchedulePage = () => {
                           {appt.scheduled_time || "Not Set"}
                         </span>
                       </td>
-                      <td>{getStatusBadge(appt.status)}</td>
+                      {/* <td>{getStatusBadge(appt.status)}</td> */}
                       <td>
                         {appt.status === "P" &&
                         editingId !== appt.appointment_id ? (

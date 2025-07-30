@@ -51,75 +51,110 @@ router.post("/admin/approve/:username", authorization, async (req, res) => {
   }
 });
 
+// router.post("/admin/approvedoc/:id", authorization, async (req, res) => {
+//   const pendingId = req.params.id;
+
+//   try {
+//     // 1. Fetch the pending doctor
+//     const pendingDoctorRes = await pool.query(
+//       `SELECT * FROM pending_doctor WHERE pending_id = $1`,
+//       [pendingId]
+//     );
+
+//     if (pendingDoctorRes.rows.length === 0) {
+//       return res.status(404).json({ message: "Pending doctor not found" });
+//     }
+
+//     const pending = pendingDoctorRes.rows[0];
+
+//     // 2. Insert into accounts table and get user_id
+//     const accountRes = await pool.query(
+//       `INSERT INTO accounts (username, password, role)
+//        VALUES ($1, $2, 'DOC')
+//        RETURNING user_id`,
+//       [pending.username, pending.password]
+//     );
+
+//     const user_id = accountRes.rows[0].user_id;
+
+//     // 3. Insert into doctor table
+//     const doctorRes = await pool.query(
+//       `INSERT INTO doctor (name, age, gender, contacts, speciality, details, user_id)
+//        VALUES ($1, $2, $3, $4, $5, $6, $7)
+//        RETURNING doctor_id`,
+//       [
+//         pending.name,
+//         pending.age,
+//         pending.gender,
+//         pending.contacts,
+//         pending.speciality,
+//         pending.details,
+//         user_id,
+//       ]
+//     );
+
+//     const doctor_id = doctorRes.rows[0].doctor_id;
+
+//     // 4. Fetch and insert associated degrees
+//     const degreesRes = await pool.query(
+//       `SELECT * FROM pending_degree WHERE pending_id = $1`,
+//       [pendingId]
+//     );
+
+//     for (const degree of degreesRes.rows) {
+//       await pool.query(
+//         `INSERT INTO doctor_degree (degree_id, doctor_id, institute, year_of_passing)
+//          VALUES ($1, $2, $3, $4)`,
+//         [degree.degree_id, doctor_id, degree.institute, degree.year_of_passing]
+//       );
+//     }
+
+//     // 5. Delete from pending tables
+//     await pool.query(`DELETE FROM pending_degree WHERE pending_id = $1`, [
+//       pendingId,
+//     ]);
+//     await pool.query(`DELETE FROM pending_doctor WHERE pending_id = $1`, [
+//       pendingId,
+//     ]);
+
+//     return res.status(201).json({ message: "Doctor approved successfully" });
+//   } catch (err) {
+//     console.error("Error approving doctor:", err);
+//     res.status(500).json({ message: "Approval failed", error: err.message });
+//   }
+// });
+
+const bcrypt = require("bcrypt");
+
 router.post("/admin/approvedoc/:id", authorization, async (req, res) => {
   const pendingId = req.params.id;
 
   try {
-    // 1. Fetch the pending doctor
-    const pendingDoctorRes = await pool.query(
-      `SELECT * FROM pending_doctor WHERE pending_id = $1`,
+    // 1. Get pending doctor (to get raw password)
+    const result = await pool.query(
+      "SELECT * FROM pending_doctor WHERE pending_id = $1",
       [pendingId]
     );
 
-    if (pendingDoctorRes.rows.length === 0) {
+    if (result.rows.length === 0) {
       return res.status(404).json({ message: "Pending doctor not found" });
     }
 
-    const pending = pendingDoctorRes.rows[0];
+    const pending = result.rows[0];
 
-    // 2. Insert into accounts table and get user_id
-    const accountRes = await pool.query(
-      `INSERT INTO accounts (username, password, role)
-       VALUES ($1, $2, 'DOC')
-       RETURNING user_id`,
-      [pending.username, pending.password]
-    );
+    // 2. Hash the password
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(pending.password, saltRounds);
 
-    const user_id = accountRes.rows[0].user_id;
-
-    // 3. Insert into doctor table
-    const doctorRes = await pool.query(
-      `INSERT INTO doctor (name, age, gender, contacts, speciality, details, user_id)
-       VALUES ($1, $2, $3, $4, $5, $6, $7)
-       RETURNING doctor_id`,
-      [
-        pending.name,
-        pending.age,
-        pending.gender,
-        pending.contacts,
-        pending.speciality,
-        pending.details,
-        user_id,
-      ]
-    );
-
-    const doctor_id = doctorRes.rows[0].doctor_id;
-
-    // 4. Fetch and insert associated degrees
-    const degreesRes = await pool.query(
-      `SELECT * FROM pending_degree WHERE pending_id = $1`,
-      [pendingId]
-    );
-
-    for (const degree of degreesRes.rows) {
-      await pool.query(
-        `INSERT INTO doctor_degree (degree_id, doctor_id, institute, year_of_passing)
-         VALUES ($1, $2, $3, $4)`,
-        [degree.degree_id, doctor_id, degree.institute, degree.year_of_passing]
-      );
-    }
-
-    // 5. Delete from pending tables
-    await pool.query(`DELETE FROM pending_degree WHERE pending_id = $1`, [
+    // 3. Call the function with hashed password
+    await pool.query(`SELECT approve_doctor($1, $2)`, [
       pendingId,
-    ]);
-    await pool.query(`DELETE FROM pending_doctor WHERE pending_id = $1`, [
-      pendingId,
+      hashedPassword,
     ]);
 
-    return res.status(201).json({ message: "Doctor approved successfully" });
+    res.status(201).json({ message: "Doctor approved successfully" });
   } catch (err) {
-    console.error("Error approving doctor:", err);
+    console.error("Error approving doctor via function:", err);
     res.status(500).json({ message: "Approval failed", error: err.message });
   }
 });
