@@ -139,6 +139,81 @@
   margin-top: 1rem;
 }
 
+/* Balance Section Styles */
+.pathologist-patient .pathologist-balance-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #f1f3f4;
+}
+
+.pathologist-patient .pathologist-balance-section p {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.pathologist-patient .pathologist-balance-section strong {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.pathologist-patient .pathologist-balance-update {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pathologist-patient .pathologist-balance-update input {
+  padding: 0.75rem 1rem;
+  border: 2px solid #dee2e6;
+  border-radius: 25px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  color: #2c3e50;
+  min-width: 150px;
+}
+
+.pathologist-patient .pathologist-balance-update input:focus {
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.pathologist-patient .pathologist-balance-update input::placeholder {
+  color: #6c757d;
+  font-style: italic;
+}
+
+.pathologist-patient .pathologist-balance-update button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
+}
+
+.pathologist-patient .pathologist-balance-update button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.pathologist-patient .pathologist-balance-update button:active {
+  transform: translateY(0);
+}
+
 /* Message Styles */
 .pathologist-patient .pathologist-patient-message {
   padding: 1rem;
@@ -363,6 +438,16 @@
     padding: 0.75rem 0.5rem;
   }
 
+  /* Balance section responsive */
+  .pathologist-patient .pathologist-balance-update {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .pathologist-patient .pathologist-balance-update input {
+    min-width: 200px;
+  }
+
   /* Mobile table responsiveness */
   .pathologist-patient .pathologist-patient-tests-table,
   .pathologist-patient .pathologist-patient-tests-table thead,
@@ -436,6 +521,15 @@
   .pathologist-patient .pathologist-patient-tests-table td {
     padding: 0.5rem 0.25rem;
   }
+
+  .pathologist-patient .pathologist-balance-section {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+  }
+
+  .pathologist-patient .pathologist-balance-update input {
+    min-width: 100%;
+  }
 }
 
 /* Print Styles */
@@ -453,5 +547,9 @@
   .pathologist-patient .pathologist-patient-tests-container {
     box-shadow: none;
     border: 1px solid #ccc;
+  }
+
+  .pathologist-patient .pathologist-balance-update {
+    display: none;
   }
 }

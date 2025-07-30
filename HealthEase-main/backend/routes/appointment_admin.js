@@ -57,6 +57,32 @@ router.patch(
   }
 );
 
+router.patch(
+  "/admin/appointments/:id/cancel",
+  authorizeadmin,
+  async (req, res) => {
+    try {
+      const { scheduled_time } = req.body;
+      const appointment_id = req.params.id;
+
+      const result = await pool.query(
+        `UPDATE appointment SET status = 'P', 
+       scheduled_time = COALESCE($1, scheduled_time) 
+       WHERE appointment_id = $2 RETURNING *`,
+        [scheduled_time, appointment_id]
+      );
+
+      if (result.rows.length === 0) {
+        return res.status(404).json("Appointment not found");
+      }
+
+      res.status(200).json("Appointment cancelled");
+    } catch (err) {
+      res.status(401).json("Server error: " + err.message);
+    }
+  }
+);
+
 router.get("/doctor/:id/schedule", authorizeadmin, async (req, res) => {
   try {
     const doctorId = req.params.id;

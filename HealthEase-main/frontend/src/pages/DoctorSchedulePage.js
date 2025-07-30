@@ -434,8 +434,40 @@ const DoctorSchedulePage = () => {
     }
   };
 
-  const handleCancel = (appointmentId) => {
-    setMessage("Cancel functionality not implemented yet.");
+  // const handleCancel = (appointmentId) => {
+  //   setMessage("Cancel functionality not implemented yet.");
+  // };
+  const handleCancel = async (appointmentId) => {
+    const token = localStorage.getItem("token");
+    try {
+      const res = await fetch(
+        `http://localhost:3001/admin/appointments/${appointmentId}/cancel`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            token,
+          },
+          body: JSON.stringify({ scheduled_time: null }),
+        }
+      );
+
+      if (!res.ok) throw new Error("Failed to cancel appointment");
+
+      const updated = appointments.map((appt) =>
+        appt.appointment_id === appointmentId
+          ? {
+              ...appt,
+              status: "P",
+            }
+          : appt
+      );
+
+      setAppointments(updated);
+      setMessage("Appointment cancelled successfully!");
+    } catch (err) {
+      setMessage("Error cancelling appointment: " + err.message);
+    }
   };
 
   const handleLogout = () => {
